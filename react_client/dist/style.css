@@ -1,0 +1,192 @@
+@import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+
+.newdeckbtn, .viewcardsbtn {
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  color: #F3F3F3;
+  background-color: #C0163A;
+  margin-right: 5px;
+  padding: 10px;
+  font-size: 3vw;
+  height: 10vw;
+  width: 30vw;
+  margin-left: 1vw;
+  
+}
+.newdeckbtn:hover, .viewcardsbtn:hover {
+  background-color: #921f38;
+}
+
+.popup-inner{
+  background: whitesmoke;
+  color: black;
+  width: 80vw;
+  height: 60vh;
+  z-index: 100;
+  border-radius: 10px;
+}
+
+.modal-box {
+
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* margin: 4rem auto; */
+  /* margin-top: 50px; */
+  background-color: rgba(0, 0, 0, .7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-header {
+  margin-top: 10px;
+  background: whitesmoke;
+  color: black;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  font-size: 1.5rem;
+  
+  
+}
+
+
+.modal-header span {
+  cursor: pointer;
+}
+.modal-content {
+  background: whitesmoke;
+  color: black;
+}
+
+.modal-content, .modal-content, .carousel div, .subjectForm {
+  box-sizing: border-box;
+  height: 35vh;
+  text-align: center;
+
+}
+label {
+  font-size: 4vh;
+  margin: 10px;
+}
+input[type = 'text'] {
+  text-align: center;
+  width: 30vw;
+  height: 7vh;
+  font-size: 4vh;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #000000;
+  
+}
+input[type = 'submit'] {
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  color: #F3F3F3;
+  background-color: #C0163A;
+  margin-right: 5px;
+  margin-top: 4vh;
+  padding: 10px;
+  padding-bottom: 2vh;
+  font-size: 3vw;
+  height: 4vw;
+  width: 12vw;
+  margin-left: 1vw;
+}
+input[type = 'submit']:hover {
+  background-color: #921f38;
+}
+.question, .answer {
+  margin-top: 6vh;
+  /* margin-right: 4vw; */
+
+  font-size: 2vh;
+  text-align: center;
+}
+.view-deck-btn {
+  display: flex;
+  margin: 2vh ;
+  margin-left: 50vw;
+}
+.add-card{
+  display: none;
+}
+
+.carousel {
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+
+.modal-footer button{
+  display: block;
+  margin-left: auto;
+  font-size: 1rem;
+  padding: .5rem 1.8rem ;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: dodgerblue;
+}
+.writingicon {
+
+  height: 100vh;
+
+  position: relative;
+  left: 25vw;
+  top: 0;
+  float: left;
+  height: 10vw;
+  margin-right: 1vw;
+
+  
+}
+
+.buttondiv1{
+
+  
+  position: relative;
+
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 18vh 1vh 1vh 1vh;
+}
+.buttondiv2{
+
+  position: relative;
+
+  text-align: center;
+  margin: 25vh 10px 0 10px;
+}
+
+
+.logo {
+  font-size: 1.9em;
+  margin-right: auto;
+  margin-left: 10px;
+  color: #f3f3f3;
+}
+.main {
+  margin: 20px;
+}
+body {
+  font-family: 'Jeju Gothic', sans-serif;
+  margin: 0px;
+  background-color: #F3F3F3;
+}
+.nav {
+  background-color: #033578;
+  padding: 10px; 
+  color: #F3F3F3;
+
+}
+
