@@ -1,0 +1,19 @@
+{
+  "name": "fullstack_flashcards",
+  "version": "1.0.0",
+  "description": "FlashCards webapp created by Tai Pham",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code-logic11235/FullStack_FlashCards.git"
+  },
+  "author": "Tai Pham",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/code-logic11235/FullStack_FlashCards/issues"
+  },
+  "homepage": "https://github.com/code-logic11235/FullStack_FlashCards#readme"
+}
