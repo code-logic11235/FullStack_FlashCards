@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
-
+import Forms from './components/users/Forms.jsx';
 function App(props){
   const [deckisOpen, setDeckIsOpen] = useState(false);
   const [cards, updateCards] = useState('');
@@ -32,7 +32,7 @@ function App(props){
          <span className="logo">FlashCards</span>
        </div>
        <div className="main">
-         <div className='buttondiv1'>
+         {/* <div className='buttondiv1'>
            <img className='writingicon' src="https://image.flaticon.com/icons/png/512/2983/2983705.png" font-size = '2em' alt="writing hand" />
            <button className = 'newdeckbtn' >  Create New Deck</button>
          </div>
@@ -41,7 +41,9 @@ function App(props){
          <div className='buttondiv2'>
            <img className='writingicon' src="https://image.flaticon.com/icons/png/512/4509/4509552.png" font-size = '2em' alt="flashcards" />
            <button className = 'viewcardsbtn' > View Decks</button>
-         </div>
+         </div> */}
+        <Forms/>
+         
        </div>
       </div>
   )
