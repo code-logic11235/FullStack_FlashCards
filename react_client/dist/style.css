@@ -176,7 +176,7 @@ input[type = 'submit']:hover {
 .main {
   margin: 20px;
 } */
-body {
+/* body {
   font-family: 'Jeju Gothic', sans-serif;
   margin: 0px;
   background-color: #F3F3F3;
@@ -186,5 +186,143 @@ body {
   padding: 10px; 
   color: #F3F3F3;
 
+} */
+
+*{
+  margin: 0;
+  padding: 0;
 }
 
+ .hero{
+   height: 100%;
+   width: 100%;
+   background-color: #F3F0D7;
+   background-image: linear-gradient(to right ,rgba(97, 245, 146, 0.7), rgba(15,0,0,0.7),to right, #F3F0D7);
+   background-position: center;
+   background-size: cover;
+   position: absolute;
+   
+   
+ 
+ }
+ .form-box{
+   width: 40vw;
+   height: 80vh;
+   position: relative;
+   margin: 6% auto;
+   text-align: center;
+   /* place-items: center; */
+   background: #fff;
+   padding: 5px;
+   min-width: 250px;
+ }
+ .button-box{
+  
+   width: 50%;
+   margin: 35px auto;
+   position: relative;
+   box-shadow: 0 0 20px 18px #ff58161f;
+   border-radius: 35px;
+   display: inline-block;
+   /* text-align: center; */
+
+ }
+ .toggle-btn{
+   /* 10px from top and bottom 30px from left and right */
+   padding: 10px 30px; 
+   display: inline-block;
+   cursor: pointer;
+   background: transparent;
+   border: 0;
+   outline: none;
+   position: relative;
+  
+
+ }
+#btn{
+ 
+  /* display: block; */
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, #ff105f, #ffad06 );
+  border-radius: 30px;
+  transition: .5s;
+}
+
+.txt-input{
+  /* display: block; */
+  position:relative;
+  width: 80%;
+  height: 4vh;
+  font-size: .8rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #000000;
+  outline: none;
+  /* margin-bottom: 3vh; */
+  /* text-align: center; */
+  
+  
+}
+input::-webkit-input-placeholder {
+  font-size: .9rem;
+  opacity: .6;
+
+}
+input[type = 'submit'] {
+  position: relative;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  color: #F3F3F3;
+  background: linear-gradient(to left, #ff105f, #ffad06 );
+  border-radius: 30px;
+  font-size: 2vh;
+  height: 40px;
+  width: 40%;
+  margin-top: 40px;
+
+}
+.validate-error{
+  text-align: left;
+  margin-left: 10%;
+  margin-bottom: 3vh;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  color: #f00e0e;
+}
+ label {
+  display: block;
+  /* float: left; */
+  /* margin-right: 60%; */
+  text-align: left;
+  margin-left: 10%;
+  margin-top: 5%;
+}
+/* .name, .email, .password, .confirm-password {
+  float: left;
+}  */
+.form-content-left{
+  position: relative;
+  /* margin: 6% auto; */
+  margin-top: 6%;
+  float: left;
+  width: 40vw;
+  height: 80vh;
+}
+.form-content-right {
+ position:relative;
+  float: left;
+  
+}
+.form-img{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 43%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

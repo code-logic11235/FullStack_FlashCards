@@ -1,11 +1,11 @@
 const ValidateForm = (values)=>{
   let errors = {valid: false};
 
-  if(!values.fullname) { // if name is empty
+
+
+  if(!values.username) { // if name is empty
     
-    errors.fullname = 'Name is required';
-  } else if (!/\b \b/.test(values.fullname)) {
-    errors.fullname = 'Your full name is required';
+    errors.username = 'Username is required';
   }
   if (!values.email) { // if name is empty
     errors.email = 'Email is required';
@@ -16,6 +16,9 @@ const ValidateForm = (values)=>{
     errors.password = 'Password is required';
   }else if (values.password.length < 8) {
     errors.password = 'Password must be longer than 8 characters';
+  }
+  if(values.password !== values.confirmPassword) {
+    errors.confirmPassword = 'Password and retyped password does not match'
   }
 // console.log('this is error in valid form : ',errors)
   console.log()

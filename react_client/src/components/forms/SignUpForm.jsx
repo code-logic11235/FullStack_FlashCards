@@ -2,14 +2,15 @@ import React, { useEffect, useLayoutEffect, useRef, useState} from 'react';
 import Axios from 'axios';
 import ValidateForm from './ValidateForm.jsx'
 
+
 export default function SignUpForm () {
   // const [nameReg, setNameReg] = useState('');
   // const [emailReg, setEmailReg] = useState('');
   // const [passwordReg, setPasswordReg] = useState('');
   const [errors, setErrors] = useState({});
-  // const [isValidForm, setIsValidForm] = useState(false);
+  const [firstClickRef, setFirstClickRef] = useState(false);
   const [values, setValues] = useState({
-    fullname: '',
+    username: '',
     email: '',
     password: '',
   })
@@ -30,17 +31,17 @@ export default function SignUpForm () {
 
 
     // use ref to skip applying effect upon initial render
-    const ref = useRef(false);
+    // const ref = useRef(false);
     useEffect(()=>{
-      if(ref.current) {
+      if(firstClickRef ) {
         console.log('ayo')
         setErrors(ValidateForm(values));
 
 
       }
-      else {
-        ref.current = true;
-      }
+      // else {
+      //   ref.current = true;
+      // }
     }, [values])
     
 
@@ -48,10 +49,9 @@ export default function SignUpForm () {
   function handleRegister (cb){
       console.log(errors)
     if(errors.valid) {
-      let capFirstName = values.fullname.split(' ')[0][0].toUpperCase() + values.fullname.split(' ')[0].slice(1)
-      // let capLastName = values.fullname.split(' ')[1][0].toUpperCase() + values.fullname.split(' ')[1].slice(1)
+    
       Axios.post('http://localhost:3000/register', {
-        name: capFirstName ,
+        name: values.username,
         email: values.email,
         password: values.password,
   
@@ -64,7 +64,9 @@ export default function SignUpForm () {
   function handleClick(e){
     e.preventDefault();
     // setErrors(ValidateForm(values));
+    
     setErrors(ValidateForm(values));
+    setFirstClickRef(true)
     handleRegister();
     // console.log('keys in error', Object.keys(errors))
   };
@@ -72,39 +74,60 @@ export default function SignUpForm () {
   return (
     <>
       <div className = 'signup-wrapper' >
-        <div>
-          <h2 className='tittle'>  Create Account</h2>
-        </div>
 
         <form className='form-wrapper' onSubmit={handleClick}>
           <div className='name'>
-            <label> Full Name: </label>
-            <input type="text"
-            name = 'fullname'
-            value={values.fullname}  
+            <label for='username'>Username</label>
+            <input type="text" className='txt-input'
+            name = 'username'
+            value={values.username}  
             onChange={handleChange} 
+            autocomplete="off" 
+            placeholder = 'Enter your username'
             />
-            {(errors.fullname && ref) && <p className='validate-error'>{errors.fullname}</p>}
           </div>
+
+          {(errors.username && firstClickRef) && <p className='validate-error'>{errors.username}</p>}
+
           <div className = 'email'>
-            <label> Email: </label>
-            <input type="email" 
+             <label for='email'>Email</label>
+            <input type="email" className='txt-input' 
             name = 'email'  
             value={values.email}
             onChange={handleChange} 
-            />
-            {(errors.email && ref) && <p className='validate-error'>{errors.email}</p>}
+            autocomplete="off" 
+
+            placeholder = 'Enter your email'
+            /> 
           </div>
+
+          {(errors.email && firstClickRef) && <p className='validate-error'>{errors.email}</p>}
+
           <div className='password'>
-          <label> Password: </label>
-          <input type="password" 
+           <label for='password'>Password</label>
+          <input type="password" className='txt-input'
           name = 'password' 
           value={values.password}
           autocomplete="off" 
           onChange={handleChange} 
+          placeholder = 'Enter your password'
           />
-          {(errors.password && ref) && <p className='validate-error'>{errors.password}</p>}
           </div>
+
+          {(errors.password && firstClickRef) && <p className='validate-error'>{errors.password}</p>}
+
+          <div className='confirm-password'>
+           <label for='confirmPassword'>Confirm Password</label>
+          <input type="password" className='txt-input'
+          name = 'confirmPassword' 
+          value={values.confirmPassword}
+          autocomplete="off" 
+          onChange={handleChange} 
+          placeholder = 'Enter your password2'
+          />
+          {/* {(errors.password && ref) && <p className='validate-error'>{errors.password}</p>} */}
+          </div>
+          {(errors.confirmPassword && firstClickRef) && <p className='validate-error'>{errors.confirmPassword}</p>}
           <div>
           <input type="submit" value="Next"   />  
           </div>
