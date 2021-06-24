@@ -5,21 +5,21 @@ const ValidateForm = (values)=>{
 
   if(!values.username) { // if name is empty
     
-    errors.username = 'Username is required';
+    errors.username = '*Username is required';
   }
   if (!values.email) { // if name is empty
-    errors.email = 'Email is required';
+    errors.email = '*Email is required';
   }else if (!/\S+@\S+\.\S+/.test(values.email)) { // using regex to validate email with @ folowed by .
-    errors.email = 'Email is Invalid. Please enter a valid email';
+    errors.email = '*Email is Invalid. Please enter a valid email';
   }
   if(!values.password) {
-    errors.password = 'Password is required';
+    errors.password = '*Password is required';
   }else if (values.password.length < 8) {
-    errors.password = 'Password must be longer than 8 characters';
+    errors.password = '*Password must be longer than 8 characters';
   }
   if(values.password !== values.confirmPassword) {
-    errors.confirmPassword = 'Password and retyped password does not match'
-  }
+    errors.confirmPassword = '*Passwords do not match'
+  } 
 // console.log('this is error in valid form : ',errors)
   console.log()
   if(Object.keys(errors).length === 1) { // length of 1 being that there is only the 'valid' key and no errors

@@ -1,6 +1,8 @@
 import React, { useEffect, useLayoutEffect, useRef, useState} from 'react';
 import Axios from 'axios';
-import ValidateForm from './ValidateForm.jsx'
+import ValidateForm from './ValidateForm.jsx';
+// const path = require('path');
+// const check = require('../../../dist/image/check-mark.png');
 
 
 export default function SignUpForm () {
@@ -75,7 +77,9 @@ export default function SignUpForm () {
     
       <div className= 'form-wrapper'>
         <form className = 'form' onSubmit={handleClick}>
-          {/* <img src = '../dist/image/Avatar.png'> </img> */}
+          {/* <img className='checkmark' src = {'./image/check-mark.png'}></img> */}
+          
+           {/* <div id='checkmark'></div> */}
           <h2> Register New Account</h2>
 
           <div className='input-group'>
@@ -87,7 +91,10 @@ export default function SignUpForm () {
             placeholder='.'
             
             />
+            {/* <img className='checkmark' src = '../../dist/image/check-mark.png'> </img> */}
             <label for= 'username'> Username</label>
+            {(errors.username && firstClickRef) && <p className='validate-error'>{errors.username}</p>}
+            {(!errors.username && firstClickRef) && <img className='checkmark' src = {'./image/check-mark.png'}></img>}
           </div>
 
           <div className='input-group'> 
@@ -99,7 +106,10 @@ export default function SignUpForm () {
             placeholder='.'
             
             /> 
+            
             <label for= 'email'> Email</label>
+            {(errors.email && firstClickRef) && <p className='validate-error'>{errors.email}</p>}
+            {(!errors.email && firstClickRef) && <img className='checkmark' src = {'./image/check-mark.png'}></img>}
           </div>
 
 
@@ -109,11 +119,12 @@ export default function SignUpForm () {
             name = 'password' 
             value={values.password}
             autocomplete="off" 
-            onChange={handleChange} 
-            
+            onChange={handleChange}
             placeholder='.'
             />
             <label for= 'password'> Password</label>
+            {(errors.password && firstClickRef) && <p className='validate-error'>{errors.password}</p>}
+            {(!errors.password && firstClickRef) && <img className='checkmark' src = {'./image/check-mark.png'}></img>}
           </div>
 
 
@@ -123,10 +134,11 @@ export default function SignUpForm () {
             value={values.confirmPassword}
             autocomplete="off" 
             onChange={handleChange} 
-            
             placeholder='.'
             />
             <label for= 'confirmPassword'> Confirm Password</label>
+            {(errors.confirmPassword && firstClickRef) && <p className='validate-error'>{errors.confirmPassword}</p>}
+            {(!errors.confirmPassword && firstClickRef) && <img className='checkmark' src = {'./image/check-mark.png'}></img>}
           </div>
 
           <input className = 'submit-btn' type="submit" value="signup"   />

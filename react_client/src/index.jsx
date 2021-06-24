@@ -27,8 +27,18 @@ function App(props){
   //   return cards;
   // } 
   return (
+    <>
+    <div id='navbar'>
+      <span>FlashCards </span>
+
+      <a className='nav btn signup' href = '#'>Register</a>
+      <a className='nav btn signin' href='#'>Sign Up</a>
+
+      
+    </div>
 
     <Forms/>
+    </>
 
     // <div className = 'app'> 
     //    {/* {console.log(getCards)} */}
