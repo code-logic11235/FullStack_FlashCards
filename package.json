@@ -20,9 +20,13 @@
   "homepage": "https://github.com/code-logic11235/FullStack_FlashCards#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "bootstrap": "^5.0.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
     "firebase": "^8.6.5",
     "jquery": "^3.6.0",
     "mysql": "^2.18.1",

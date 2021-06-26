@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import Axios from 'axios';
 import ValidateForm from './ValidateForm.jsx';
 // const path = require('path');
@@ -6,15 +6,12 @@ import ValidateForm from './ValidateForm.jsx';
 
 
 export default function SignUpForm () {
-  // const [nameReg, setNameReg] = useState('');
-  // const [emailReg, setEmailReg] = useState('');
-  // const [passwordReg, setPasswordReg] = useState('');
   const [errors, setErrors] = useState({});
   const [firstClickRef, setFirstClickRef] = useState(false);
   const [values, setValues] = useState({
-    username: null,
-    email: null,
-    password: null,
+    username: '',
+    email: '',
+    password: '',
   })
   const handleChange = (e)=>{
     
@@ -25,22 +22,14 @@ export default function SignUpForm () {
     
   }
 
-
-
-
-
-
-
-
     // use ref to skip applying effect upon initial render
     // const ref = useRef(false);
     useEffect(()=>{
-      if(firstClickRef ) {
-        console.log('ayo')
+
         setErrors(ValidateForm(values));
 
 
-      }
+      
       // else {
       //   ref.current = true;
       // }
@@ -48,7 +37,7 @@ export default function SignUpForm () {
     
 
 
-  function handleRegister (cb){
+  function handleRegister (){
       console.log(errors)
     if(errors.valid) {
     
@@ -58,7 +47,9 @@ export default function SignUpForm () {
         password: values.password,
   
       }).then((res) => {
-        console.log('THIS IS RESSPONSE', res);
+        console.log('registered! ', res);
+      }).catch((err)=>{
+        console.log('we got an err',err)
       });
     }
   }
@@ -94,7 +85,7 @@ export default function SignUpForm () {
             {/* <img className='checkmark' src = '../../dist/image/check-mark.png'> </img> */}
             <label for= 'username'> Username</label>
             {(errors.username && firstClickRef) && <p className='validate-error'>{errors.username}</p>}
-            {(!errors.username && firstClickRef) && <img className='checkmark' src = {'./image/check-mark.png'}></img>}
+            {(!errors.username ) && <img className='checkmark' src = {'./image/check-mark.png'}></img>}
           </div>
 
           <div className='input-group'> 
@@ -109,7 +100,7 @@ export default function SignUpForm () {
             
             <label for= 'email'> Email</label>
             {(errors.email && firstClickRef) && <p className='validate-error'>{errors.email}</p>}
-            {(!errors.email && firstClickRef) && <img className='checkmark' src = {'./image/check-mark.png'}></img>}
+            {(!errors.email ) && <img className='checkmark' src = {'./image/check-mark.png'}></img>}
           </div>
 
 
@@ -124,7 +115,7 @@ export default function SignUpForm () {
             />
             <label for= 'password'> Password</label>
             {(errors.password && firstClickRef) && <p className='validate-error'>{errors.password}</p>}
-            {(!errors.password && firstClickRef) && <img className='checkmark' src = {'./image/check-mark.png'}></img>}
+            {(!errors.password ) && <img className='checkmark' src = {'./image/check-mark.png'}></img>}
           </div>
 
 
@@ -138,12 +129,12 @@ export default function SignUpForm () {
             />
             <label for= 'confirmPassword'> Confirm Password</label>
             {(errors.confirmPassword && firstClickRef) && <p className='validate-error'>{errors.confirmPassword}</p>}
-            {(!errors.confirmPassword && firstClickRef) && <img className='checkmark' src = {'./image/check-mark.png'}></img>}
+            {(!errors.confirmPassword ) && <img className='checkmark' src = {'./image/check-mark.png'}></img>}
           </div>
 
           <input className = 'submit-btn' type="submit" value="signup"   />
           {/* <hr /> */}
-          <a href='.log-in' id='log-in-instead'>Already have an account?</a>
+          <a id='sign-in-instead'>Already have an account?</a>
         </form>
       </div>
 

@@ -14,6 +14,30 @@ const getAllCards = (cb)=>{
     cb (results) //send back to server 
   });
 };
+
+
+const insertNewUser = (email, password, username, cb)=>{
+  connection.query(`insert into users (username, email, password) values ('${username}', '${email}', '${password}');`, (dbFuncRrr, results)=>{
+    if(dbFuncRrr) {
+      cb(dbFuncRrr, null);
+    } 
+
+    cb(null, results);
+  })
+}
+const signIn = (username, cb)=>{
+
+  connection.query(`select username, password from users where username = '${username}';`, (dbFuncRrr, successResults)=>{
+
+    if(dbFuncRrr) {
+      cb(dbFuncRrr, null);
+    }else {
+      cb(null, successResults);
+
+    } 
+    
+  });
+}
 // const insertCard = (data)=>{
 //   connection.query(`insert into ${table} (question, answer) values ("${data.question}", "${data.answer}")`)
 // }
@@ -30,7 +54,7 @@ const getAllCards = (cb)=>{
 // };
 
 module.exports = {
-  getAllCards
+  getAllCards, insertNewUser, signIn
   // createCards,
   // insertCard
 }

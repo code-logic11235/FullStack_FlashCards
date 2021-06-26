@@ -10,7 +10,7 @@ const ValidateForm = (values)=>{
   if (!values.email) { // if name is empty
     errors.email = '*Email is required';
   }else if (!/\S+@\S+\.\S+/.test(values.email)) { // using regex to validate email with @ folowed by .
-    errors.email = '*Email is Invalid. Please enter a valid email';
+    errors.email = '*Please enter a valid email';
   }
   if(!values.password) {
     errors.password = '*Password is required';

@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
 import Forms from './components/forms/Forms.jsx';
-
+import NavBar from './components/NavBar.jsx';
 function App(props){
   const [deckisOpen, setDeckIsOpen] = useState(false);
   const [cards, updateCards] = useState('');
+
 
   // function getCards() {
   //   const [cards, updateCards] = useState('');
@@ -28,15 +29,15 @@ function App(props){
   // } 
   return (
     <>
-    <div id='navbar'>
+    {/* <div id='navbar'>
       <span>FlashCards </span>
 
       <a className='nav btn signup' href = '#'>Register</a>
       <a className='nav btn signin' href='#'>Sign Up</a>
 
       
-    </div>
-
+    </div> */}
+    <NavBar/>
     <Forms/>
     </>
 
