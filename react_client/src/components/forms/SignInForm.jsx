@@ -28,7 +28,7 @@ export default function SignInForm () {
       username: values.username,
       password: values.password,
     }).then((res) => {
-      console.log( res.data);
+      console.log( 'signinform: ',res.data);
     }).catch((err)=>{
       console.log('what-------',err)
     });

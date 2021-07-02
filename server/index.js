@@ -1,6 +1,18 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
+
+const TWO_HOURS = 1000 * 60 * 60 * 2
+
+  
+const {
+  PORT= 3000,
+  NODE_ENV = 'development',
+  SESS_NAME = 's_id',
+  SESS_SECRET = '-shhhitsASECRET-',
+  SESS_LIFETIME = TWO_HOURS
+} = process.env
+
+const IN_PROD = NODE_ENV === 'production'
 const cors = require('cors');
 
 // const bodyParser = require('body-parser');
@@ -19,21 +31,26 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../react_client/dist'))
 
+app.use(cookieParser());  
 
 app.use(cors({
   origin:['http://localhost:3000'],
   method: ['GET','BUG'],
   credentials: true
-}
-  ));
-app.use(cookieParser());
-app.use(session({
-  key: 'userID',
-  secret: 'subscribe-save',
+}));
+
+app.use(session({  
+  name: SESS_NAME,
+  // key: 'userID',
+  secret: SESS_SECRET,
   resave: false,
   saveUninitialized: false,
   cookie:{
-    expires: 60*60 * 2, //session expires in 2 hours
+    maxAge: SESS_LIFETIME, //session expires in 2 hours
+    sameSite: true,
+    secure: IN_PROD, // true for product, fine for false in developemnt
+    
+    
   }
 }))
 
@@ -56,6 +73,7 @@ app.get('/signin', (req, res)=>{
   }
 })
 app.post('/signin',(req, res)=>{
+  console.log('post /signin',req.session)
   const username = req.body.username;
   const password = req.body.password
   db.signIn(username, (error, signInResult)=>{
@@ -67,9 +85,11 @@ app.post('/signin',(req, res)=>{
       bcrypt.compare(password, signInResult[0].password, (bcryptFuncErr, matchedResult)=>{
         // console.log(matchedResult);
         if (matchedResult) { // password match 
-          req.session.user = signInResult;
+          req.session.user = signInResult[0].username;
           // console.log('---------match results---------')
-          // console.log(req.session.user)
+          console.log(req.session.user)
+          console.log('signin results: ', signInResult)
+          
           res.send(signInResult);
         } else { //password does not match
           res.send({message: 'Wrong username/password combination'});  

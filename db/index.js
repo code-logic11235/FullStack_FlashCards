@@ -17,9 +17,9 @@ const getAllCards = (cb)=>{
 
 
 const insertNewUser = (email, password, username, cb)=>{
-  connection.query(`insert into users (username, email, password) values ('${username}', '${email}', '${password}');`, (dbFuncRrr, results)=>{
-    if(dbFuncRrr) {
-      cb(dbFuncRrr, null);
+  connection.query(`insert into users (username, email, password) values ('${username}', '${email}', '${password}');`, (dbFuncErr, results)=>{
+    if(dbFuncErr) {
+      cb(dbFuncErr, null);
     } 
 
     cb(null, results);
@@ -27,10 +27,10 @@ const insertNewUser = (email, password, username, cb)=>{
 }
 const signIn = (username, cb)=>{
 
-  connection.query(`select username, password from users where username = '${username}';`, (dbFuncRrr, successResults)=>{
+  connection.query(`select username, password from users where username = '${username}';`, (dbFuncErr, successResults)=>{
 
-    if(dbFuncRrr) {
-      cb(dbFuncRrr, null);
+    if(dbFuncErr) {
+      cb(dbFuncErr, null);
     }else {
       cb(null, successResults);
 
