@@ -106,12 +106,12 @@ app.post('/signin',(req, res)=>{
 
 app.post('/register', (req, res) => {
 
-  const email = req.body.email;
+  const fullname = req.body.fullname;
   const password = req.body.password;
-  const username = req.body.name;
+  const username = req.body.username;
 
     bcrypt.hash(password, saltRounds).then((hash)=>{
-      db.insertNewUser(email, hash, username, (data)=>{
+      db.insertNewUser(fullname, hash, username, (data)=>{
         // should have result from client in here via a callback
         res.sendStatus(201);
     

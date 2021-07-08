@@ -3,14 +3,17 @@ import SignUpForm from './SignUpForm.jsx'
 import SignInForm from './SIgnInForm.jsx'
 import $ from 'jquery';
 
-export default function Forms(){
+export default function Forms({isFormOpen, setIsFormOpen}){
   const [signUpForm, setSignUpForm] = useState(false);
   $(function(){
-    $('.nav.btn.signin, #sign-in-instead').on('click', ()=>{
-      setSignUpForm(false);
+    $('.signin-btn, #sign-up-instead').on('click', ()=>{
+      setIsFormOpen(true);
+      
     })
-    $('.nav.btn.signup, #sign-up-instead').on('click', ()=>{
+    $('.signup-btn, #sign-in-instead').on('click', ()=>{
+      setIsFormOpen(true);
       setSignUpForm(true);
+      
     })
   })
 
@@ -20,7 +23,9 @@ export default function Forms(){
 
     <>
 
-           {(signUpForm) ? <SignUpForm/> : <SignInForm/> }
+           {(isFormOpen) ? 
+           (signUpForm ? <SignUpForm/> : <SignInForm/> ):
+           null}
      
 
     </>

@@ -3,11 +3,12 @@ import Axios from 'axios';
 
 Axios.defaults.withCredentials = true;
 
-export default function SignInForm () {
+export default function SignInForm ({isFormOpen, setIsFormOpen}) {
   const [values, setValues] = useState({
     username: '',
     password: '',
   })
+  
   const handleChange = (e)=>{
     
     setValues({
@@ -16,11 +17,11 @@ export default function SignInForm () {
     })
     
   }
-  useEffect(()=>{
-    Axios.get('http://localhost:3000/signin').then((res)=>{
-      console.log(res)
-    })
-  },[])
+  // useEffect(()=>{
+  //   Axios.get('http://localhost:3000/signin').then((res)=>{
+  //     console.log(res)
+  //   })
+  // },[])
 
   function handleSignIn (e){
     e.preventDefault();
@@ -28,9 +29,10 @@ export default function SignInForm () {
       username: values.username,
       password: values.password,
     }).then((res) => {
-      console.log( 'signinform: ',res.data);
+      console.log( 'signin Success here is data rememebr to delete this: ',res.data);
+      setIsFormOpen(false);
     }).catch((err)=>{
-      console.log('what-------',err)
+      console.log('Axios Err:',err)
     });
     
   }
@@ -38,41 +40,45 @@ export default function SignInForm () {
 
 
   return (
-    <div className= 'form-wrapper'>
-    <form className = 'form' onSubmit={handleSignIn}>
-      {/* <img className='checkmark' src = {'./image/check-mark.png'}></img> */}
-      
-       {/* <div id='checkmark'></div> */}
-      <h2> Sign In</h2>
+    <div className='modal-box' >
+      <div className='popup-inner'> 
+        <div className= 'form-wrapper'>
+          <form className = 'form' onSubmit={handleSignIn}>
+            {/* <img className='checkmark' src = {'./image/check-mark.png'}></img> */}
+            
+            {/* <div id='checkmark'></div> */}
+            <h2> Sign In</h2>
 
-      <div className='input-group'>
-        <input type="text" className='txt-input'
-        name = 'username'
-        value={values.username}  
-        onChange={handleChange} 
-        autocomplete="off" 
-        placeholder='.'
-        
-        />
-        {/* <img className='checkmark' src = '../../dist/image/check-mark.png'> </img> */}
-        <label for= 'username'> Username</label>
+            <div className='input-group'>
+              <input type="text" className='txt-input'
+              name = 'username'
+              value={values.username}  
+              onChange={handleChange} 
+              autocomplete="off" 
+              placeholder='.'
+              
+              />
+              {/* <img className='checkmark' src = '../../dist/image/check-mark.png'> </img> */}
+              <label for= 'username'> Username</label>
+            </div>
+
+            <div className='input-group'> 
+              <input type="password" className='txt-input'
+              name = 'password' 
+              value={values.password}
+              autocomplete="off" 
+              onChange={handleChange}
+              placeholder='.'
+              />
+              <label for= 'password'> Password</label>
+            </div>
+
+            <input className = 'submit-btn' type="submit" value="signin"   />
+            {/* <hr /> */}
+            <a className='sign-up-instead'>Dont have an account? sign up</a>
+          </form>
+        </div>
       </div>
-
-      <div className='input-group'> 
-        <input type="password" className='txt-input'
-        name = 'password' 
-        value={values.password}
-        autocomplete="off" 
-        onChange={handleChange}
-        placeholder='.'
-        />
-        <label for= 'password'> Password</label>
-      </div>
-
-      <input className = 'submit-btn' type="submit" value="signin"   />
-      {/* <hr /> */}
-      <a id='sign-up-instead'>Dont have an account? sign up</a>
-    </form>
-  </div>
+    </div>
   )
 }

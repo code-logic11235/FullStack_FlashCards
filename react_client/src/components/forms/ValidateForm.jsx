@@ -28,3 +28,7 @@ const ValidateForm = (values)=>{
   return errors;
 }
 export default ValidateForm;
+
+// need to validate full anem with a space 
+// need to set up logout rout
+// set up login username 
