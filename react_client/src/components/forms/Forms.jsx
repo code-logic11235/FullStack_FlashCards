@@ -6,16 +6,24 @@ import $ from 'jquery';
 export default function Forms({isFormOpen, setIsFormOpen}){
   const [signUpForm, setSignUpForm] = useState(false);
   $(function(){
-    $('.signin-btn, #sign-up-instead').on('click', ()=>{
+    $('.signin-btn, #sign-in-instead').on('click', ()=>{
       setIsFormOpen(true);
+      setSignUpForm(false);
       
     })
-    $('.signup-btn, #sign-in-instead').on('click', ()=>{
+    $('.signup-btn, #sign-up-instead').on('click', ()=>{
       setIsFormOpen(true);
       setSignUpForm(true);
       
     })
+    $('.modal-box').on('click', (e)=>{
+      if(e.target.closest('.form-wrapper')) return 
+      setIsFormOpen(false);
+      
+      
+    })
   })
+
 
 
   return (

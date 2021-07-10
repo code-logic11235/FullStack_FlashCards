@@ -14,20 +14,8 @@ const getAllCards = (cb)=>{
     cb (results) //send back to server 
   });
 };
-
-
-const insertNewUser = (email, password, username, cb)=>{
-  connection.query(`insert into users (username, email, password) values ('${username}', '${email}', '${password}');`, (dbFuncErr, results)=>{
-    if(dbFuncErr) {
-      cb(dbFuncErr, null);
-    } 
-
-    cb(null, results);
-  })
-}
-const signIn = (username, cb)=>{
-
-  connection.query(`select username, password from users where username = '${username}';`, (dbFuncErr, successResults)=>{
+const checkDuplicateUser = (username,cb) =>{
+  connection.query(`select username from users where username = '${username}';`, (dbFuncErr, successResults)=>{
 
     if(dbFuncErr) {
       cb(dbFuncErr, null);
@@ -38,23 +26,35 @@ const signIn = (username, cb)=>{
     
   });
 }
-// const insertCard = (data)=>{
-//   connection.query(`insert into ${table} (question, answer) values ("${data.question}", "${data.answer}")`)
-// }
-// const createCards = (data, cb)=>{
-//   connection.query(`create table if not exists ${data.subject} (
-//     id int not null auto_increment,
-//     question varchar(155) not null,
-//     answer varchar(255) not null,
-//     primary key (id) 
-//   )`, (err, results)=>{
-//     if (err) throw err;
-//     cb(results)
-//   });
-// };
+
+
+const insertNewUser = (firstname, lastname, password, username, cb)=>{
+  connection.query(`insert into users (username, firstname, lastname, password) values ('${username}','${firstname}', '${lastname}', '${password}');`, (dbFuncErr, results)=>{
+    if(dbFuncErr) {
+
+      cb(dbFuncErr, null);
+    } 
+
+    cb(null, results);
+  })
+}
+const signIn = (username, cb)=>{
+  connection.query(`select users_id, firstname, lastname, password from users where username = '${username}';`, (dbFuncErr, successResults)=>{
+
+    if(dbFuncErr) {
+      cb(dbFuncErr, null);
+    }else {
+      cb(null, successResults);
+
+    } 
+    
+  });
+}
+
+
 
 module.exports = {
-  getAllCards, insertNewUser, signIn
+  getAllCards, insertNewUser, signIn, checkDuplicateUser
   // createCards,
   // insertCard
 }

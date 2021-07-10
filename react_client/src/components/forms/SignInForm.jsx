@@ -75,7 +75,7 @@ export default function SignInForm ({isFormOpen, setIsFormOpen}) {
 
             <input className = 'submit-btn' type="submit" value="signin"   />
             {/* <hr /> */}
-            <a className='sign-up-instead'>Dont have an account? sign up</a>
+            <a id='sign-up-instead'>Dont have an account? Sign up</a>
           </form>
         </div>
       </div>

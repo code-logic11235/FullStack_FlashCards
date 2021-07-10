@@ -22,7 +22,7 @@ const session = require('express-session'); //express is stateless http server. 
 
 const db = require('../db/index.js');
 const bcrypt = require('bcrypt');
-const saltRounds = 10;
+const SALTROUNDS = 10;
 
 
 
@@ -56,14 +56,27 @@ app.use(session({
 
 
 
-app.get('/api/cards', (req, res) => {
-  //TODO - your code here!
-  db.getAllCards((data)=>{
-    // should have result from client in here via a callback
-    res.send(data);
+// app.get('/api/cards', (req, res) => {
+//   //TODO - your code here!
+//   db.getAllCards((data)=>{
+//     // should have result from client in here via a callback
+//     res.send(data);
 
-  });
-});
+//   });
+// });
+
+app.post('/checkDuplicateUser', (req, res)=>{
+
+  db.checkDuplicateUser(req.body.username, (error, result)=>{
+    if (error) {
+      res.send({error: error})
+    } 
+    if(result.length > 0){
+      console.log('more than one user');
+      res.send(result)
+    }
+  })
+})
 
 app.get('/signin', (req, res)=>{
   if (req.session.user) {
@@ -73,7 +86,6 @@ app.get('/signin', (req, res)=>{
   }
 })
 app.post('/signin',(req, res)=>{
-  console.log('post /signin',req.session)
   const username = req.body.username;
   const password = req.body.password
   db.signIn(username, (error, signInResult)=>{
@@ -83,11 +95,14 @@ app.post('/signin',(req, res)=>{
     } 
     if(signInResult.length > 0){
       bcrypt.compare(password, signInResult[0].password, (bcryptFuncErr, matchedResult)=>{
-        // console.log(matchedResult);
-        if (matchedResult) { // password match 
+
+        if (matchedResult) {
+          delete signInResult[0].password
+           // password match 
           req.session.user = signInResult[0].username;
           // console.log('---------match results---------')
           console.log(req.session.user)
+          
           console.log('signin results: ', signInResult)
           
           res.send(signInResult);
@@ -105,13 +120,17 @@ app.post('/signin',(req, res)=>{
 
 
 app.post('/register', (req, res) => {
+  console.log(req.body)
 
-  const fullname = req.body.fullname;
+  const firstname = req.body.firstname;
+  const lastname = req.body.lastname;
   const password = req.body.password;
   const username = req.body.username;
 
-    bcrypt.hash(password, saltRounds).then((hash)=>{
-      db.insertNewUser(fullname, hash, username, (data)=>{
+
+    
+    bcrypt.hash(password, SALTROUNDS).then((hash)=>{
+      db.insertNewUser(firstname,lastname, hash, username, (data)=>{
         // should have result from client in here via a callback
         res.sendStatus(201);
     
