@@ -6,7 +6,7 @@ import ValidateForm from './ValidateForm.jsx';
 // var debounce = require('lodash.debounce');
 import { debounce } from 'lodash';
 
-export default function SignUpForm () {
+export default function SignUpForm ({setIsFormOpen}) {
   const [errors, setErrors] = useState({});
   const [firstClickRef, setFirstClickRef] = useState(false);
   const [values, setValues] = useState({
@@ -23,22 +23,10 @@ export default function SignUpForm () {
       ...values,
       [e.target.name]: e.target.value,
     })
-    // console.log('hello')
+
 
   }
 
-
-  // function checkDuplicateUsers (){
-  //       console.log('valie:    ',values.username)
-  //       Axios.post('http://localhost:3000/checkDuplicateUser', {
-  //         username: values.username
-  //       }).then((res)=>{
-  //         console.log('-----ayeadasdad-----------', res)
-  //       }).catch((err)=>{
-  //         console.log('----shit-----', err)
-  //       })
-
-  // }
 
     useEffect(()=>{
 
@@ -59,6 +47,10 @@ export default function SignUpForm () {
         password: values.password,
   
       }).then((res) => {
+        let form = document.getElementsByClassName('form')[0];
+        form.innerHTML= 'You Have been registered!'
+        form.style.textAlign='center';
+
         console.log('registered! ', res);
         // if(res.data)
       }).catch((err)=>{
@@ -76,10 +68,16 @@ export default function SignUpForm () {
     handleRegister();
   };
 
+  function handleclose(){
+    setIsFormOpen(false);
+  }
+
+
   return (
     <div className='modal-box' >
       <div className='popup-inner'> 
         <div className= 'form-wrapper'>
+          <div className= 'close-btn' onClick={handleclose}>X</div>
           <form className = 'form' onSubmit={handleClick}>
             <h2> Register New Account</h2>
 

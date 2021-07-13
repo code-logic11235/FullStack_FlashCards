@@ -32,12 +32,18 @@ export default function SignInForm ({isFormOpen, setIsFormOpen, loggedInUser, se
       // console.log( 'signin Success here is data rememebr to delete this: ',res.data);
       // console
       setLoggedInUser(res.data)
+      let form = document.getElementsByClassName('form')[0];
+      form.innerHTML= 'You Have been Logged in!'
+      form.style.textAlign='center';
 
       /// set this so when u sign in 
     }).catch((err)=>{
       console.log('Axios Err signin form:',err)
     });
     
+  }
+  function handleclose(){
+    setIsFormOpen(false);
   }
 
 
@@ -47,6 +53,7 @@ export default function SignInForm ({isFormOpen, setIsFormOpen, loggedInUser, se
     <div className='modal-box' >
       <div className='popup-inner'> 
         <div className= 'form-wrapper'>
+          <div className= 'close-btn' onClick={handleclose}>X</div>
           <form className = 'form' onSubmit={handleSignIn}>
             {/* <img className='checkmark' src = {'./image/check-mark.png'}></img> */}
             

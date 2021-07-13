@@ -191,11 +191,17 @@ margin-right: 25px;
   height: 100%;
   max-height: 600px;
   padding: 32px 50px 50px;
+  /* text-align: center; */
+
   /* border-radius: 10px; */
 
   /* box-shadow: 0 15px 45px rgba(63, 63, 63, 1); */
 }
-
+.close-btn{
+  float: right;
+  margin: 20px 20px;
+  cursor: pointer;
+}
 
 
 
@@ -291,10 +297,12 @@ form #done{
 #sign-in-instead{
   cursor: pointer;
   color: black;
+  /* padding-top: 20px; */
 }
 #sign-up-instead{
   cursor: pointer;
   color: black;
+  /* padding-top: 20px; */
 }
 .validate-error{
   position: absolute;
