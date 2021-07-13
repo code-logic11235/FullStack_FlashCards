@@ -4,7 +4,6 @@ import Forms from './components/forms/Forms.jsx';
 import NavBar from './components/NavBar.jsx';
 import CTA from './components/cta/cta.jsx';
 import Axios from 'axios';
-// import {FormContext} from './components/forms/Forms.jsx'
 
 
 

@@ -157,14 +157,22 @@ app.post('/register', (req, res) => {
          error: error
        })
       });
+    }
+  })
+})
+
+app.post('/api/getAllCards', (req, res)=>{
+  const user_id = req.body.user_id;
+
+  db.getallcards(user_id, (error, results)=>{
+    if(error) {
+      res.send({error: error})
+    } else {
+      console.log('---Get ALL CARDS RESULTS: ',results)
 
     }
   })
-
-    
-
 })
-
 
 app.listen(PORT, () => {
 

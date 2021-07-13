@@ -1,3 +1,4 @@
+const { get } = require('jquery');
 const mysql = require('mysql');
 const sqlConfig = require('./config.js');
 
@@ -51,10 +52,31 @@ const signIn = (username, cb)=>{
   });
 }
 
+const getallcards = (user_id)=>{
+connection.query( `select deck_name, question, answer 
+                  from card 
+                  inner join user
+                  on user.user_id = card.user_id
+                  where user.user_id = ${user_id};
+                  `, (dbFuncErr, successResults)=>{
 
+                    if(dbFuncErr) {
+                      cb(dbFuncErr, null);
+                    }else {
+                      cb(null, successResults);
+                
+                    } 
+                    
+                  });
+                }
+                
 
 module.exports = {
-  getAllCards, insertNewUser, signIn, checkDuplicateUser
+  getAllCards, 
+  insertNewUser, 
+  signIn, 
+  checkDuplicateUser,
+  getallcards
   // createCards,
   // insertCard
 }
