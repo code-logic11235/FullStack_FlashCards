@@ -1,9 +1,10 @@
-import React, { useEffect, useState} from 'react';
+import React, { useCallback, useEffect, useState} from 'react';
 import Axios from 'axios';
 import ValidateForm from './ValidateForm.jsx';
 // const path = require('path');
 // const check = require('../../../dist/image/check-mark.png');
-var debounce = require('lodash.debounce');
+// var debounce = require('lodash.debounce');
+import { debounce } from 'lodash';
 
 export default function SignUpForm () {
   const [errors, setErrors] = useState({});
@@ -14,28 +15,35 @@ export default function SignUpForm () {
     lastname: '',
     password: '',
   })
+
+
   const handleChange = (e)=>{
     
     setValues({
       ...values,
       [e.target.name]: e.target.value,
     })
-    debounce(checkDuplicateUsers(values.username), 2000)
-    
+    // console.log('hello')
+
   }
 
-  function checkDuplicateUsers (){
-    Axios.post('http://localhost:3000/checkDuplicateUser', {
-      username: values.username
-    }).then(()=>{
-      console.log('ayeadasdad')
-    })
-  }
+
+  // function checkDuplicateUsers (){
+  //       console.log('valie:    ',values.username)
+  //       Axios.post('http://localhost:3000/checkDuplicateUser', {
+  //         username: values.username
+  //       }).then((res)=>{
+  //         console.log('-----ayeadasdad-----------', res)
+  //       }).catch((err)=>{
+  //         console.log('----shit-----', err)
+  //       })
+
+  // }
 
     useEffect(()=>{
 
         setErrors(ValidateForm(values));
-        // console.log(errors.valid)
+
     }, [values])
     
 
@@ -52,8 +60,10 @@ export default function SignUpForm () {
   
       }).then((res) => {
         console.log('registered! ', res);
+        // if(res.data)
       }).catch((err)=>{
-        console.log('we got an err',err)
+        setErrors({username: '*Username taken'})
+        // console.log('username taken')
       });
     }
   }

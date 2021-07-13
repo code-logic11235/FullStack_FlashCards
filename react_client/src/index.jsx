@@ -15,12 +15,11 @@ function App(props){
   useEffect(()=>{
     Axios.get('http://localhost:3000/signin').then((res)=>{
       if(res.data.loggedIn) {
-        // console.log(res.data)
-        setLoggedInUser({signedIn: true,
-                     data: res.data})
+
+        setLoggedInUser(res.data)
       }
     })
-  },[isFormOpen])
+  },[])
 
 
 
@@ -28,24 +27,20 @@ function App(props){
 
   return (
     <>
-    {/* <NavBar/> */}
-    {/* {isSignin.loggedIn ? `signed in as ${isSignin.user}` : <Forms/>} */}
+
     <div className='landing-page'>
 
       <div className = 'landing-page-container'>
-        <header>
-          <div className='header-container'>
-            <div className='logo'>
-              <i class="material-icons " id= 'logo'>style</i> 
-            </div>
-            <span class='underline-name'>Opti-Cards</span>
-            <NavBar isSignIn ={loggedInUser} setIsSignIn = {setLoggedInUser}/> 
-          </div>
-        </header >
 
-        <Forms isFormOpen = {isFormOpen} setIsFormOpen = {setIsFormOpen}/>
+        <NavBar loggedInUser ={loggedInUser} setLoggedInUser = {setLoggedInUser}/> 
+
+        <Forms 
+          isFormOpen = {isFormOpen} 
+          setIsFormOpen = {setIsFormOpen}
+          loggedInUser ={loggedInUser} 
+          setLoggedInUser = {setLoggedInUser}/>
         
-        {loggedInUser.signedIn ? 
+        {loggedInUser.loggedIn ? 
         '':
         <CTA isFormOpen = {isFormOpen} setIsFormOpen = {setIsFormOpen}/>
       }

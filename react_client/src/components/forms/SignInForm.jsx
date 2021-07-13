@@ -3,7 +3,7 @@ import Axios from 'axios';
 
 Axios.defaults.withCredentials = true;
 
-export default function SignInForm ({isFormOpen, setIsFormOpen}) {
+export default function SignInForm ({isFormOpen, setIsFormOpen, loggedInUser, setLoggedInUser}) {
   const [values, setValues] = useState({
     username: '',
     password: '',
@@ -29,13 +29,17 @@ export default function SignInForm ({isFormOpen, setIsFormOpen}) {
       username: values.username,
       password: values.password,
     }).then((res) => {
-      console.log( 'signin Success here is data rememebr to delete this: ',res.data);
-      setIsFormOpen(false);
+      // console.log( 'signin Success here is data rememebr to delete this: ',res.data);
+      // console
+      setLoggedInUser(res.data)
+
+      /// set this so when u sign in 
     }).catch((err)=>{
-      console.log('Axios Err:',err)
+      console.log('Axios Err signin form:',err)
     });
     
   }
+
 
 
 

@@ -3,7 +3,7 @@ import SignUpForm from './SignUpForm.jsx'
 import SignInForm from './SIgnInForm.jsx'
 import $ from 'jquery';
 
-export default function Forms({isFormOpen, setIsFormOpen}){
+export default function Forms({isFormOpen, setIsFormOpen, loggedInUser, setLoggedInUser}){
   const [signUpForm, setSignUpForm] = useState(false);
   $(function(){
     $('.signin-btn, #sign-in-instead').on('click', ()=>{
@@ -32,7 +32,12 @@ export default function Forms({isFormOpen, setIsFormOpen}){
     <>
 
            {(isFormOpen) ? 
-           (signUpForm ? <SignUpForm/> : <SignInForm/> ):
+           (signUpForm ? 
+           <SignUpForm/> : 
+           <SignInForm 
+              loggedInUser ={loggedInUser} 
+              setLoggedInUser = {setLoggedInUser}/> ):
+              
            null}
      
 

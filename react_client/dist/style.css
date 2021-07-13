@@ -15,17 +15,19 @@ body {
   margin: 0 15vw;
   margin-top: 5vh;
 }
-
-.header-container{
+.navbar{
   display: flex;
-  /* text-align: left; */
+  justify-content: space-between;
   align-items: center;
-  
-  
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
 }
 .header-container #logo {
   margin-right: 1vw;
-  font-size: 10vh;
+  font-size: 10vw;
   color: rgba(255, 255, 255, 1);
 }
 
@@ -33,13 +35,13 @@ body {
   border-bottom: 1vh solid #fdde00;
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 3vh;
+  font-size: 3vw;
   color: white;
-  
 }
 
-#navbar {
-  position: absolute;
+
+.navbar-desktop {
+
   right: 15vw;
   color: white;
   font-weight: bold;
@@ -47,73 +49,96 @@ body {
   display: flex;
 
 }
-#navbar .signup-btn, .signin-btn {
-  display: table;
+.navbar-register, .navbar-signin{
+  gap: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}v
+.signup-btn, .signin-btn {
+  display: block;
   cursor: pointer;
 
 }
-.signup-btn{
-  text-align: center;
-}
-.signin-btn i {
-  font-size: 5vh;
-  text-align: center;
-
-}
-.material-icons, #how-to-reg{
-  margin-left:3.5vw;
-  text-align: center;
-}
-#navbar .signup-btn:hover {
+.navbar-register .signup-btn:hover {
   transition: .5s;
   color: #dadada;
   border-bottom: 1vh solid #fdde00;
   
 }
-#navbar  .signin-btn:hover {
+.navbar-signin .signin-btn:hover {
   transition: .5s;
   color: #dadada;
   border-bottom: 1vh solid #fdde00;
   
 } 
 
-#navbar .logged-in-users {
+
+
+.material-icons, #how-to-reg{
+  margin-left:3.5vw;
+  text-align: center;
+}
+.navbar-desktop-links ul{
+  list-style-type: none;
+  display: flex;
+}
+
+
+
+@media (max-width: 990px) {
+
+  .navbar{
+    flex-direction: column;
+    gap: 10px;
+  }
+  .landing-page-container {
+    margin: 0 5vw;
+    margin-top: 5vh;
+  }
+  
+}
+
+.navbar-desktop-signed-in{
+  /* margin-top: 25px; */
   display: flex;
   justify-content: center;
   align-items: center;
-  /* text-align: center; */
-  /* margin-right: 3vw; */
+
   color: white;
   font-weight: bold;
   font-size: 2.5vh;
 }
-#navbar .logged-in-users::after{
-  content: '\25BC';
-  font-size: .4em;
-text-align: center;
-padding-left: 5px;
-}
 
-.logout-btn{
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  cursor: pointer;
-  /* padding-top: 235px; */
-}
-.logout-btn:hover{
-   border: 2px solid rgb(136, 1, 1);
-}
-#logout{
-  margin-right: 1.2vw;
-  background: #3faee0;
-  border-radius: 50%;
-  width: 1.2em;
-  height: 1.2em;
-  font-size: 2em;
+.logout-btn-container{
+  /* position: absolute; */
+  /* right: 10vw;
+  top: 5vh; */
+  /* display: inline-flex; */
+  /* align-items: flex-start; */
+  /* flex-shrink: 0; */
   display: flex;
   justify-content: center;
   align-items: center;
+  
+}
+.logout-btn{
+margin-left: 15px;
+border: none;
+font-size: 1.2rem;
+padding: 5px 5px 5px 5px;
+text-align: center;
+margin-right: 25px;
+
+
+
+
+}
+#logout {
+
+  font-size: 40px;
+  color: white;
+
 }
 
 
@@ -328,5 +353,6 @@ form #done{
   .band-container{ 
     position: relative;
   
+}
 }
 /* @import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css); */

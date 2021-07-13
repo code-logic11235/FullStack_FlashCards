@@ -64,8 +64,16 @@ app.use(session({
 
 //   });
 // });
+app.get('/logout', (req, res)=>{
+  req.session.destroy();
+  // req.session=null;
+  res.cookie("s_id", "", { expires: new Date() });
+  res.send({loggedIn: false, data:''})
+  // console.log(req.session)
+})
 
 app.post('/checkDuplicateUser', (req, res)=>{
+  // console.log(req.body)
 
   db.checkDuplicateUser(req.body.username, (error, result)=>{
     if (error) {
@@ -80,7 +88,8 @@ app.post('/checkDuplicateUser', (req, res)=>{
 
 app.get('/signin', (req, res)=>{
   if (req.session.user) {
-    res.send({loggedIn: true, user: req.session.user})
+    // console.log('req.session.user:::: ', req.session.user)
+    res.send({loggedIn: true, data: req.session.user })
   } else {
     res.send({loggedIn: false})
   }
@@ -99,13 +108,13 @@ app.post('/signin',(req, res)=>{
         if (matchedResult) {
           delete signInResult[0].password
            // password match 
-          req.session.user = signInResult[0].username;
+          req.session.user = signInResult[0]
           // console.log('---------match results---------')
-          console.log(req.session.user)
+          // console.log(req.session.user)
           
-          console.log('signin results: ', signInResult)
+          // console.log('signin results: ', signInResult[0])
           
-          res.send(signInResult);
+          res.send({loggedIn: true, data: signInResult[0]});
         } else { //password does not match
           res.send({message: 'Wrong username/password combination'});  
         }
@@ -120,27 +129,38 @@ app.post('/signin',(req, res)=>{
 
 
 app.post('/register', (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
 
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
   const password = req.body.password;
   const username = req.body.username;
 
-
+  db.checkDuplicateUser(req.body.username, (error, result)=>{
+    if (error) {
+      res.send({error: error})
+    } 
+    if(result.length > 0){
+      // console.log('more than one user');
+      res.status(409).send({error: 'username taken'})
+    }else {
+      
+      bcrypt.hash(password, SALTROUNDS).then((hash)=>{
+        db.insertNewUser(firstname,lastname, hash, username, (data)=>{
+          // should have result from client in here via a callback
+          res.sendStatus(201);
+      
+        });
     
-    bcrypt.hash(password, SALTROUNDS).then((hash)=>{
-      db.insertNewUser(firstname,lastname, hash, username, (data)=>{
-        // should have result from client in here via a callback
-        res.sendStatus(201);
-    
+      }).catch(error =>{
+       res.status(500).json({
+         error: error
+       })
       });
 
-    }).catch(error =>{
-     res.status(500).json({
-       error: error
-     })
-    });
+    }
+  })
+
     
 
 })
