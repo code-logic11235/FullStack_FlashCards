@@ -86,11 +86,11 @@ export default function SignUpForm ({setIsFormOpen}) {
               name = 'username'
               value={values.username}  
               onChange={handleChange} 
-              autocomplete="off" 
+              autoComplete="off" 
               placeholder='.'
               
               />
-              <label for= 'username'> Username</label>
+              <label htmlFor= 'username'> Username</label>
               {(errors.username && firstClickRef) && <p className='validate-error'>{errors.username}</p>}
               {(!errors.username ) && <div className="material-icons " id= 'done'>done</div>}
             </div>
@@ -101,10 +101,10 @@ export default function SignUpForm ({setIsFormOpen}) {
                 name = 'firstname'  
                 value={values.firstname}
                 onChange={handleChange} 
-                autocomplete="off" 
+                autoComplete="off" 
                 placeholder='.'
                 /> 
-                <label for= 'firstname'>Firstname</label>
+                <label htmlFor= 'firstname'>Firstname</label>
                 {(errors.firstname && firstClickRef) && <p className='validate-error'>{errors.firstname}</p>}
                 {(!errors.firstname ) && <div className="material-icons " id= 'done'>done</div>}
               </div>
@@ -113,10 +113,10 @@ export default function SignUpForm ({setIsFormOpen}) {
                 name = 'lastname'  
                 value={values.lastname}
                 onChange={handleChange} 
-                autocomplete="off" 
+                autoComplete="off" 
                 placeholder='.'
                 /> 
-                <label for= 'lastname'>Lastname</label>
+                <label htmlFor= 'lastname'>Lastname</label>
                 {(errors.lastname && firstClickRef) && <p className='validate-error'>{errors.lastname}</p>}
                 {(!errors.lastname ) && <div className="material-icons " id= 'done'>done</div>}
               </div>
@@ -129,11 +129,11 @@ export default function SignUpForm ({setIsFormOpen}) {
               <input type="password" className='txt-input'
               name = 'password' 
               value={values.password}
-              autocomplete="off" 
+              autoComplete="off" 
               onChange={handleChange}
               placeholder='.'
               />
-              <label for= 'password'> Password</label>
+              <label htmlFor= 'password'> Password</label>
               {(errors.password && firstClickRef) && <p className='validate-error'>{errors.password}</p>}
               {(!errors.password ) && <div className="material-icons " id= 'done'>done</div>}
             </div>
@@ -143,11 +143,11 @@ export default function SignUpForm ({setIsFormOpen}) {
               <input type="password" className='txt-input'
               name = 'confirmPassword' 
               value={values.confirmPassword}
-              autocomplete="off" 
+              autoComplete="off" 
               onChange={handleChange} 
               placeholder='.'
               />
-              <label for= 'confirmPassword'> Confirm Password</label>
+              <label htmlFor= 'confirmPassword'> Confirm Password</label>
               {(errors.confirmPassword && firstClickRef) && <p className='validate-error'>{errors.confirmPassword}</p>}
               {(!errors.confirmPassword ) && <div className="material-icons " id= 'done'>done</div>}
             </div>

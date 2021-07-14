@@ -1,10 +1,13 @@
 import React, { useState} from 'react';
 import SignUpForm from './SignUpForm.jsx'
 import SignInForm from './SIgnInForm.jsx'
+import Logout from './Logout.jsx'
 import $ from 'jquery';
 
 export default function Forms({isFormOpen, setIsFormOpen, loggedInUser, setLoggedInUser}){
   const [signUpForm, setSignUpForm] = useState(false);
+  const [isLogoutOpen, setIsLogoutOpen] = useState(false);
+  
   $(function(){
     $('.signin-btn, #sign-in-instead').on('click', ()=>{
       setIsFormOpen(true);
@@ -19,7 +22,11 @@ export default function Forms({isFormOpen, setIsFormOpen, loggedInUser, setLogge
     $('.modal-box').on('click', (e)=>{
       if(e.target.closest('.form-wrapper')) return 
       setIsFormOpen(false);
-      
+    })
+    $('.navbar-desktop-signed-in').on('click', ()=>{
+      setIsLogoutOpen(true);
+
+
       
     })
   })
@@ -30,7 +37,7 @@ export default function Forms({isFormOpen, setIsFormOpen, loggedInUser, setLogge
 
 
     <>
-
+            {isLogoutOpen? <Logout setIsLogoutOpen={setIsLogoutOpen} setLoggedInUser={setLoggedInUser}/> : null}
            {(isFormOpen) ? 
            (signUpForm ? 
            <SignUpForm 

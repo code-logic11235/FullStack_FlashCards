@@ -108,32 +108,9 @@ body {
   color: white;
   font-weight: bold;
   font-size: 2.5vh;
+  cursor: pointer;
 }
 
-.logout-btn-container{
-  /* position: absolute; */
-  /* right: 10vw;
-  top: 5vh; */
-  /* display: inline-flex; */
-  /* align-items: flex-start; */
-  /* flex-shrink: 0; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-}
-.logout-btn{
-margin-left: 15px;
-border: none;
-font-size: 1.2rem;
-padding: 5px 5px 5px 5px;
-text-align: center;
-margin-right: 25px;
-
-
-
-
-}
 #logout {
 
   font-size: 40px;
@@ -196,6 +173,42 @@ margin-right: 25px;
   /* border-radius: 10px; */
 
   /* box-shadow: 0 15px 45px rgba(63, 63, 63, 1); */
+}
+.form.logout{
+  align-items: center;
+  text-align: center;
+  /* color: green; */
+  
+}
+.logout-modal-btn{
+  margin-top: 3vh;
+  display: flex;
+  justify-content: space-between;
+}
+.submit-btn-logout, .submit-btn-close{
+  /* display: flex; */
+  margin-left: 4vw;
+  border: none;
+  outline: none;
+  background: #b84848;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.submit-btn-close{
+  margin-right: 4vw;
+  border: none;
+  outline: none;
+  background: #fdde00;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 .close-btn{
   float: right;
@@ -364,3 +377,13 @@ form #done{
 }
 }
 /* @import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css); */
+
+
+.dashboard{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-top: 20vh;
+}

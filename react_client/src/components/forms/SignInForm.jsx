@@ -43,6 +43,7 @@ export default function SignInForm ({isFormOpen, setIsFormOpen, loggedInUser, se
     
   }
   function handleclose(){
+
     setIsFormOpen(false);
   }
 
@@ -65,23 +66,23 @@ export default function SignInForm ({isFormOpen, setIsFormOpen, loggedInUser, se
               name = 'username'
               value={values.username}  
               onChange={handleChange} 
-              autocomplete="off" 
+              autoComplete="off" 
               placeholder='.'
               
               />
               {/* <img className='checkmark' src = '../../dist/image/check-mark.png'> </img> */}
-              <label for= 'username'> Username</label>
+              <label htmlFor= 'username'> Username</label>
             </div>
 
             <div className='input-group'> 
               <input type="password" className='txt-input'
               name = 'password' 
               value={values.password}
-              autocomplete="off" 
+              autoComplete="off" 
               onChange={handleChange}
               placeholder='.'
               />
-              <label for= 'password'> Password</label>
+              <label htmlFor= 'password'> Password</label>
             </div>
 
             <input className = 'submit-btn' type="submit" value="signin"   />

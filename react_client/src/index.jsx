@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import Forms from './components/forms/Forms.jsx';
 import NavBar from './components/NavBar.jsx';
 import CTA from './components/cta/cta.jsx';
+import DashBoard from './components/flashcards/DashBoard.jsx'
 import Axios from 'axios';
+
 
 
 
@@ -31,7 +33,7 @@ function App(props){
 
       <div className = 'landing-page-container'>
 
-        <NavBar loggedInUser ={loggedInUser} setLoggedInUser = {setLoggedInUser}/> 
+        <NavBar setIsFormOpen={setIsFormOpen} loggedInUser ={loggedInUser} setLoggedInUser = {setLoggedInUser}/> 
 
         <Forms 
           isFormOpen = {isFormOpen} 
@@ -40,18 +42,10 @@ function App(props){
           setLoggedInUser = {setLoggedInUser}/>
         
         {loggedInUser.loggedIn ? 
-        '':
+        <DashBoard/>:
         <CTA isFormOpen = {isFormOpen} setIsFormOpen = {setIsFormOpen}/>
       }
         
-        
-        
-
-        
-
-        {/* <div className = 'landing-page-intro-box'>
-        </div> */}
-        {/* <Forms/> */}
       </div>    
 
 

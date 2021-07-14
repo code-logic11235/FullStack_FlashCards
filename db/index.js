@@ -6,7 +6,7 @@ const connection = mysql.createConnection(sqlConfig);
 connection.connect();
 
 const getAllCards = (cb)=>{
-  connection.query('select * from cards', (err, results)=>{
+  connection.query('select * from card', (err, results)=>{
     if (err) {
 
       throw err;
@@ -16,7 +16,7 @@ const getAllCards = (cb)=>{
   });
 };
 const checkDuplicateUser = (username,cb) =>{
-  connection.query(`select username from users where username = '${username}';`, (dbFuncErr, successResults)=>{
+  connection.query(`select username from user where username = '${username}';`, (dbFuncErr, successResults)=>{
 
     if(dbFuncErr) {
       cb(dbFuncErr, null);
@@ -30,7 +30,7 @@ const checkDuplicateUser = (username,cb) =>{
 
 
 const insertNewUser = (firstname, lastname, password, username, cb)=>{
-  connection.query(`insert into users (username, firstname, lastname, password) values ('${username}','${firstname}', '${lastname}', '${password}');`, (dbFuncErr, results)=>{
+  connection.query(`insert into user (username, firstname, lastname, password) values ('${username}','${firstname}', '${lastname}', '${password}');`, (dbFuncErr, results)=>{
     if(dbFuncErr) {
 
       cb(dbFuncErr, null);
@@ -40,7 +40,7 @@ const insertNewUser = (firstname, lastname, password, username, cb)=>{
   })
 }
 const signIn = (username, cb)=>{
-  connection.query(`select users_id, firstname, lastname, password from users where username = '${username}';`, (dbFuncErr, successResults)=>{
+  connection.query(`select user_id, firstname, lastname, password from user where username = '${username}';`, (dbFuncErr, successResults)=>{
 
     if(dbFuncErr) {
       cb(dbFuncErr, null);
