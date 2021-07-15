@@ -17,11 +17,6 @@ export default function SignInForm ({isFormOpen, setIsFormOpen, loggedInUser, se
     })
     
   }
-  // useEffect(()=>{
-  //   Axios.get('http://localhost:3000/signin').then((res)=>{
-  //     console.log(res)
-  //   })
-  // },[])
 
   function handleSignIn (e){
     e.preventDefault();
@@ -29,26 +24,19 @@ export default function SignInForm ({isFormOpen, setIsFormOpen, loggedInUser, se
       username: values.username,
       password: values.password,
     }).then((res) => {
-      // console.log( 'signin Success here is data rememebr to delete this: ',res.data);
-      // console
       setLoggedInUser(res.data)
       let form = document.getElementsByClassName('form')[0];
       form.innerHTML= 'You Have been Logged in!'
       form.style.textAlign='center';
 
-      /// set this so when u sign in 
     }).catch((err)=>{
       console.log('Axios Err signin form:',err)
     });
-    
   }
   function handleclose(){
 
     setIsFormOpen(false);
   }
-
-
-
 
   return (
     <div className='modal-box' >
@@ -56,11 +44,7 @@ export default function SignInForm ({isFormOpen, setIsFormOpen, loggedInUser, se
         <div className= 'form-wrapper'>
           <div className= 'close-btn' onClick={handleclose}>X</div>
           <form className = 'form' onSubmit={handleSignIn}>
-            {/* <img className='checkmark' src = {'./image/check-mark.png'}></img> */}
-            
-            {/* <div id='checkmark'></div> */}
             <h2> Sign In</h2>
-
             <div className='input-group'>
               <input type="text" className='txt-input'
               name = 'username'
@@ -68,9 +52,7 @@ export default function SignInForm ({isFormOpen, setIsFormOpen, loggedInUser, se
               onChange={handleChange} 
               autoComplete="off" 
               placeholder='.'
-              
-              />
-              {/* <img className='checkmark' src = '../../dist/image/check-mark.png'> </img> */}
+              />       
               <label htmlFor= 'username'> Username</label>
             </div>
 
@@ -84,9 +66,7 @@ export default function SignInForm ({isFormOpen, setIsFormOpen, loggedInUser, se
               />
               <label htmlFor= 'password'> Password</label>
             </div>
-
-            <input className = 'submit-btn' type="submit" value="signin"   />
-            {/* <hr /> */}
+            <input className = 'submit-btn' type="submit" value="signin"/>
             <a id='sign-up-instead'>Dont have an account? Sign up</a>
           </form>
         </div>

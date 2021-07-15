@@ -52,7 +52,7 @@ const signIn = (username, cb)=>{
   });
 }
 
-const getallcards = (user_id)=>{
+const getallcards = (user_id, cb)=>{
 connection.query( `select deck_name, question, answer 
                   from card 
                   inner join user

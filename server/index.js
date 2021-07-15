@@ -85,10 +85,18 @@ app.post('/checkDuplicateUser', (req, res)=>{
     }
   })
 })
+app.get('/fakelogin', (req,res)=>{
+  if (true) {
+    // console.log('req.session.user:::: ', req.session.user)
+    res.send({loggedIn: true, data: {user_id: 1, firstname: 'tai', lastname: 'pham', username: 'taipham232'} })
+  } else {
+    res.send({loggedIn: false})
+  }
+})
 
 app.get('/signin', (req, res)=>{
   if (req.session.user) {
-    // console.log('req.session.user:::: ', req.session.user)
+
     res.send({loggedIn: true, data: req.session.user })
   } else {
     res.send({loggedIn: false})
@@ -136,7 +144,7 @@ app.post('/register', (req, res) => {
   const password = req.body.password;
   const username = req.body.username;
 
-  db.checkDuplicateUser(req.body.username, (error, result)=>{
+  db.checkDuplicateUser(username, (error, result)=>{
     if (error) {
       res.send({error: error})
     } 
@@ -162,13 +170,13 @@ app.post('/register', (req, res) => {
 })
 
 app.post('/api/getAllCards', (req, res)=>{
+  console.log(req.body)
   const user_id = req.body.user_id;
-
   db.getallcards(user_id, (error, results)=>{
     if(error) {
       res.send({error: error})
     } else {
-      console.log('---Get ALL CARDS RESULTS: ',results)
+      res.send(results);
 
     }
   })
