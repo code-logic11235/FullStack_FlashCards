@@ -38,7 +38,7 @@ function App(props){
         <Forms 
           isFormOpen = {isFormOpen} 
           setIsFormOpen = {setIsFormOpen}
-          loggedInUser ={loggedInUser} 
+
           setLoggedInUser = {setLoggedInUser}/>
         
         {loggedInUser.loggedIn ? 

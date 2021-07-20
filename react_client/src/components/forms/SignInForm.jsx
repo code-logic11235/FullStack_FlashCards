@@ -3,7 +3,7 @@ import Axios from 'axios';
 
 Axios.defaults.withCredentials = true;
 
-export default function SignInForm ({isFormOpen, setIsFormOpen, loggedInUser, setLoggedInUser}) {
+export default function SignInForm ({setIsFormOpen}) {
   const [values, setValues] = useState({
     username: '',
     password: '',
@@ -24,14 +24,24 @@ export default function SignInForm ({isFormOpen, setIsFormOpen, loggedInUser, se
       username: values.username,
       password: values.password,
     }).then((res) => {
-      console.log(res.data)
+      console.log('hea')
+      console.log(res)
+      console.log('message:: ', res.message)
+      // if(res.message) {
+      //   console.log('message:: ', res.message)
+      // } else {
+      //   console.log(res.loggedIn);
+      // }
       // setLoggedInUser(res.data)
       // let form = document.getElementsByClassName('form')[0];
       // form.innerHTML= 'You Have been Logged in!'
       // form.style.textAlign='center';
 
     }).catch((err)=>{
-      console.log('Axios Err signin form:',err)
+      if(err) {
+        // console.log('yo')
+        document.getElementById('signin-error').style.display='flex'
+      }
     });
   }
   function handleclose(){
@@ -67,6 +77,9 @@ export default function SignInForm ({isFormOpen, setIsFormOpen, loggedInUser, se
               />
               <label htmlFor= 'password'> Password</label>
             </div>
+            <i id='signin-error'>
+              *Wrong username/password combination
+            </i>
             <input className = 'submit-btn' type="submit" value="signin"/>
             <a id='sign-up-instead'>Dont have an account? Sign up</a>
           </form>

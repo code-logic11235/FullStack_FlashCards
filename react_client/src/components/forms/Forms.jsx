@@ -4,7 +4,7 @@ import SignInForm from './SIgnInForm.jsx'
 import Logout from './Logout.jsx'
 import $ from 'jquery';
 
-export default function Forms({isFormOpen, setIsFormOpen, loggedInUser, setLoggedInUser}){
+export default function Forms({isFormOpen, setIsFormOpen, setLoggedInUser}){
   const [signUpForm, setSignUpForm] = useState(false);
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
   
@@ -43,8 +43,6 @@ export default function Forms({isFormOpen, setIsFormOpen, loggedInUser, setLogge
            <SignUpForm 
             setIsFormOpen = {setIsFormOpen}/> : 
            <SignInForm 
-              loggedInUser ={loggedInUser} 
-              setLoggedInUser = {setLoggedInUser}
               setIsFormOpen = {setIsFormOpen}/> ):
               
            null}

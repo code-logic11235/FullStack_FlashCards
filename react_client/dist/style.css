@@ -224,6 +224,7 @@ body {
 
 
 form #done{
+  /* display: none; */
   width: 35px;
   position: absolute;
   margin-top: 5.5px;
@@ -299,6 +300,7 @@ form #done{
   
 }
 
+
 .submit-btn{
   display: block;
   margin-left: auto;
@@ -325,10 +327,25 @@ form #done{
 .validate-error{
   position: absolute;
   margin-top: 5.5px;
-  margin-right: 8px;
+
   top: 0;
   right: 0;
   color: rgb(156, 8, 8);
+}
+.validate-error.firstname{
+  position: absolute;
+  margin-top: 5.5px;
+
+  top: 0;
+  left: 0;
+  color: rgb(156, 8, 8);
+}
+#signin-error{
+  display: none;
+  color: rgb(156, 8, 8);
+  margin-bottom: 10px;
+
+  /* text-decoration: ; */
 }
 .band{
   height: 80vh;

@@ -14,6 +14,7 @@ export default function SignUpForm ({setIsFormOpen}) {
     firstname: '',
     lastname: '',
     password: '',
+    confirmPassword: '',
   })
 
 
@@ -29,10 +30,16 @@ export default function SignUpForm ({setIsFormOpen}) {
 
 
     useEffect(()=>{
-
+        // document.getElementById('done').style.display='none';
         setErrors(ValidateForm(values));
 
     }, [values])
+    useEffect(()=>{
+      if(values.confirmPassword ==='') {
+        console.log('true')
+        document.getElementById('done').style.display='none'
+      }
+    },[])
     
 
 
@@ -91,7 +98,7 @@ export default function SignUpForm ({setIsFormOpen}) {
               
               />
               <label htmlFor= 'username'> Username</label>
-              {(errors.username && firstClickRef) && <p className='validate-error'>{errors.username}</p>}
+              {(errors.username && firstClickRef) && <i className='validate-error'>{errors.username}</i>}
               {(!errors.username ) && <div className="material-icons " id= 'done'>done</div>}
             </div>
 
@@ -105,7 +112,7 @@ export default function SignUpForm ({setIsFormOpen}) {
                 placeholder='.'
                 /> 
                 <label htmlFor= 'firstname'>Firstname</label>
-                {(errors.firstname && firstClickRef) && <p className='validate-error'>{errors.firstname}</p>}
+                {(errors.firstname && firstClickRef) && <i className='validate-error firstname'>{errors.firstname}</i>}
                 {(!errors.firstname ) && <div className="material-icons " id= 'done'>done</div>}
               </div>
               <div className='input-group'> 
@@ -117,7 +124,7 @@ export default function SignUpForm ({setIsFormOpen}) {
                 placeholder='.'
                 /> 
                 <label htmlFor= 'lastname'>Lastname</label>
-                {(errors.lastname && firstClickRef) && <p className='validate-error'>{errors.lastname}</p>}
+                {(errors.lastname && firstClickRef) && <i className='validate-error'>{errors.lastname}</i>}
                 {(!errors.lastname ) && <div className="material-icons " id= 'done'>done</div>}
               </div>
 
@@ -134,7 +141,7 @@ export default function SignUpForm ({setIsFormOpen}) {
               placeholder='.'
               />
               <label htmlFor= 'password'> Password</label>
-              {(errors.password && firstClickRef) && <p className='validate-error'>{errors.password}</p>}
+              {(errors.password && firstClickRef) && <i className='validate-error'>{errors.password}</i>}
               {(!errors.password ) && <div className="material-icons " id= 'done'>done</div>}
             </div>
 
@@ -148,8 +155,8 @@ export default function SignUpForm ({setIsFormOpen}) {
               placeholder='.'
               />
               <label htmlFor= 'confirmPassword'> Confirm Password</label>
-              {(errors.confirmPassword && firstClickRef) && <p className='validate-error'>{errors.confirmPassword}</p>}
-              {(!errors.confirmPassword ) && <div className="material-icons " id= 'done'>done</div>}
+              {(errors.confirmPassword && firstClickRef) && <i className='validate-error'>{errors.confirmPassword}</i>}
+              {(!errors.confirmPassword && (values.confirmPassword !== '')) && <div className="material-icons " id= 'done'>done</div>}
             </div>
             {errors.valid ?  
               <input className = 'submit-btn' type="submit" value="signup" /> :

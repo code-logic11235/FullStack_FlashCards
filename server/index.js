@@ -117,16 +117,16 @@ app.post('/signin',(req, res)=>{
           delete signInResult[0].password
            // password match 
           req.session.user = signInResult[0]
-          console.log(signInResult[0])
+          // console.log(signInResult[0])
           res.send({loggedIn: true, data: signInResult[0]});
         } else { //password does not match
-          console.log('wrong username pass')
-          res.send({message: 'Wrong username/password combination'});  
+          // console.log('wrong username pass')
+          res.status(401).send({message: 'Wrong username/password combination'});  
         }
       });
     }else { // user does not exist
-      console.log('wrong username ')
-    res.send({message: 'User does not exist'})
+      // console.log('wrong username ')
+    res.status(401).send({message: 'User does not exist'})
     // console.log(successResult[0].password)
     }
   });
