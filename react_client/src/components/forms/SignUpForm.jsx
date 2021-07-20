@@ -30,16 +30,10 @@ export default function SignUpForm ({setIsFormOpen}) {
 
 
     useEffect(()=>{
-        // document.getElementById('done').style.display='none';
         setErrors(ValidateForm(values));
 
     }, [values])
-    useEffect(()=>{
-      if(values.confirmPassword ==='') {
-        console.log('true')
-        document.getElementById('done').style.display='none'
-      }
-    },[])
+
     
 
 
