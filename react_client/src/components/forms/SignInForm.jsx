@@ -24,10 +24,11 @@ export default function SignInForm ({isFormOpen, setIsFormOpen, loggedInUser, se
       username: values.username,
       password: values.password,
     }).then((res) => {
-      setLoggedInUser(res.data)
-      let form = document.getElementsByClassName('form')[0];
-      form.innerHTML= 'You Have been Logged in!'
-      form.style.textAlign='center';
+      console.log(res.data)
+      // setLoggedInUser(res.data)
+      // let form = document.getElementsByClassName('form')[0];
+      // form.innerHTML= 'You Have been Logged in!'
+      // form.style.textAlign='center';
 
     }).catch((err)=>{
       console.log('Axios Err signin form:',err)

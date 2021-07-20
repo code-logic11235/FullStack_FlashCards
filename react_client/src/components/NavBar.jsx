@@ -15,6 +15,7 @@ export default function NavBar({setIsFormOpen,loggedInUser, setLoggedInUser}) {
     <div className='header-container'>
       <div className='logo'>
         <i className="material-icons " id= 'logo'>style</i> 
+      
       </div>
       <span className='underline-name'>Opti-Cards</span>
     </div>
@@ -33,7 +34,7 @@ export default function NavBar({setIsFormOpen,loggedInUser, setLoggedInUser}) {
      </>
    : 
    <div className = 'navbar-desktop'>
-    {/* <div className="material-icons" id= 'mobile-toggle-btn'>menu</div> */}
+
      <div className = 'navbar-desktop-links'>
        <ul>
          <li>

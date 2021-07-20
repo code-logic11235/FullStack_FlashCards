@@ -14,9 +14,9 @@ function App(props){
   const [loggedInUser, setLoggedInUser] =useState(false);
 
   useEffect(()=>{
-    Axios.get('http://localhost:3000/fakelogin').then((res)=>{
+    Axios.get('http://localhost:3000/signin').then((res)=>{
       if(res.data.loggedIn) {
-        console.log('FAKE LOG IN')
+
         setLoggedInUser(res.data)
       }
     })

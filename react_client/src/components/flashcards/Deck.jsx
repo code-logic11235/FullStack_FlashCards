@@ -7,13 +7,26 @@ export default function Deck({deck_name}){
       <div className='deck'>
       {/* {console.log(deck_name)} */}
       {/* bru */}
-      
+        {/* <hr /> */}
+        <br />
+        <hr className='hr-decor'/>
+        <br />
+        <hr />
+        <br />
+        <hr />
         <h1>
         {deck_name}
         </h1>
-
+        <br />
+        <hr />
+        <br />
+        <hr />
+        <br />
+        <hr />
+     
+       
       
-        {/* {console.log(deck_name)} */}
+
       </div>
     </div>
   )

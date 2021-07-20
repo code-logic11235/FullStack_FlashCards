@@ -8,31 +8,50 @@ export default function DashBoard({loggedInUser}) {
   const [showDecks, setShowDecks]= useState(false)
   function handleClick (){
     setShowDecks(true)
-    // getDeck().then((data => {
-    //   let unique = new Set(data.map(item => item.deck_name));
-    //   let numberOfDecks= unique.length;
-    //   console.log(unique, unique.size)
-      
-    // }))
+    document.getElementById('dashboard-btn').style.display='none'
+
   }
 
-  function getDeck(){
-    return Axios.post('http://localhost:3000/api/getAllCards', {
-      user_id : loggedInUser.data.user_id,
-    }).then((res) => {
-      return res.data;
+  // function getDeck(){
+  //   return Axios.post('http://localhost:3000/api/getAllCards', {
+  //     user_id : loggedInUser.data.user_id,
+  //   }).then((res) => {
+  //     return res.data;
      
-    }).catch((err)=>{
-      console.log('Axios Err signin form:',err)
-    });
-  }
+  //   }).catch((err)=>{
+  //     console.log('Axios Err signin form:',err)
+  //   });
+  // }
   return (
+    
     <div className = 'dashboard'>
-      {/* {console.log(loggedInUser)} */}
-       {/* <button className = 'get-started' onClick={handleClick} >View Decks</button>
-       <button className = 'get-started' >Create Deck</button> */}
-       {/* {showDecks ? <ShowDeck loggedInUser = {loggedInUser}/>: null} */}
-       <ShowDeck loggedInUser = {loggedInUser}/>
+      <div id='dashboard-btn'>
+        <button className = 'get-started' onClick={handleClick}>View Decks</button>
+        <button className = 'get-started' >Create Deck</button>
+      </div>
+      
+    {showDecks ? 
+    <>
+    <div className='search'>
+        <div className = 'search-container'>
+          <div className='input-container'>
+            <span className="material-icons">search</span>
+              <input type = 'text' id = 'filter-deck'
+                name = 'filter-deck'
+                placeholder="Seach for Deck"/>
+          </div>
+          <div className = 'search-deck-btn-container'>
+            < span> Find Job</span>
+          </div>
+        </div>
+      </div>
+
+
+
+      <ShowDeck loggedInUser = {loggedInUser} setShowDecks = {setShowDecks} />
+      </>:
+    null
+    }
     </div>
   )
 }
