@@ -43,7 +43,7 @@ export default function Forms({isFormOpen, setIsFormOpen, setLoggedInUser}){
            <SignUpForm 
             setIsFormOpen = {setIsFormOpen}/> : 
            <SignInForm 
-              setIsFormOpen = {setIsFormOpen}/> ):
+              setIsFormOpen = {setIsFormOpen} setLoggedInUser={setLoggedInUser}/> ):
               
            null}
      

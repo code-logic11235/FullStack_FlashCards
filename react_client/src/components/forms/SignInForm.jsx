@@ -3,7 +3,7 @@ import Axios from 'axios';
 
 Axios.defaults.withCredentials = true;
 
-export default function SignInForm ({setIsFormOpen}) {
+export default function SignInForm ({setIsFormOpen,setLoggedInUser}) {
   const [values, setValues] = useState({
     username: '',
     password: '',
@@ -24,27 +24,17 @@ export default function SignInForm ({setIsFormOpen}) {
       username: values.username,
       password: values.password,
     }).then((res) => {
-      console.log('hea')
-      console.log(res)
-      console.log('message:: ', res.message)
-      // if(res.message) {
-      //   console.log('message:: ', res.message)
-      // } else {
-      //   console.log(res.loggedIn);
-      // }
-      // setLoggedInUser(res.data)
-      // let form = document.getElementsByClassName('form')[0];
-      // form.innerHTML= 'You Have been Logged in!'
-      // form.style.textAlign='center';
-
+      setLoggedInUser(res.data)
+      let form = document.getElementsByClassName('form')[0];
+      form.innerHTML= 'You Have been Logged in!'
+      form.style.textAlign='center';
     }).catch((err)=>{
       if(err) {
-        // console.log('yo')
         document.getElementById('signin-error').style.display='flex'
       }
     });
   }
-  function handleclose(){
+  function handleClose(){
 
     setIsFormOpen(false);
   }
@@ -53,7 +43,7 @@ export default function SignInForm ({setIsFormOpen}) {
     <div className='modal-box' >
       <div className='popup-inner'> 
         <div className= 'form-wrapper'>
-          <div className= 'close-btn' onClick={handleclose}>X</div>
+          <div className= 'close-btn' onClick={handleClose}>X</div>
           <form className = 'form' onSubmit={handleSignIn}>
             <h2> Sign In</h2>
             <div className='input-group'>

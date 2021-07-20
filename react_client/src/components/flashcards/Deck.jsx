@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 
-export default function Deck({deck_name}){
+export default function Deck({subject}){
 
   return (
     <div className ='deck-container'>
@@ -15,7 +15,7 @@ export default function Deck({deck_name}){
         <br />
         <hr />
         <h1>
-        {deck_name}
+        {subject}
         </h1>
         <br />
         <hr />

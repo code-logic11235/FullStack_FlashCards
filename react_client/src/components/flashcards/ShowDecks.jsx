@@ -4,15 +4,7 @@ import Axios from 'axios';
 
 export default function ShowDeck({loggedInUser, setShowDecks}) {
 const [deckNames,setDeckNames] =useState([])
-// const [uniqueDecks, setUniqueDecks] = useState('');
-  // function lol (){
-  //   return getUniqueDecks();
-  // }
-  // function  getUniqueDecks (){
-  //   return getDeck().then((response => {
-  //     return [...new Set(response.map(item => item.deck_name))]
-  //     }))
-  // }
+
   function handleClick (){
     setShowDecks(false);
     document.getElementById('dashboard-btn').style.display='flex';
@@ -29,7 +21,7 @@ const [deckNames,setDeckNames] =useState([])
      Axios.post('http://localhost:3000/api/getAllCards', {
       user_id : loggedInUser.data.user_id,
     }).then((res) => {
-      let unique = [...new Set(res.data.map(item => item.deck_name))];
+      let unique = [...new Set(res.data.map(item => item.subject))];
 
       
 
@@ -43,6 +35,19 @@ const [deckNames,setDeckNames] =useState([])
 
 return (
   <>
+  <div className='search'>
+        <div className = 'search-container'>
+          <div className='input-container'>
+            <span className="material-icons">search</span>
+              <input type = 'text' id = 'filter-deck'
+                name = 'filter-deck'
+                placeholder="Seach for Deck"/>
+          </div>
+          <div className = 'search-deck-btn-container'>
+            < span> Find Job</span>
+          </div>
+        </div>
+      </div>
       <div id = 'number-of-decks'>
       <div className = 'back-btn-container'>
         <button id = 'back-btn' onClick={handleClick}> <span className="material-icons" id ='arrow_back'>arrow_back</span>Back</button>
@@ -52,8 +57,8 @@ return (
       </div>
     </div>
     <div className='show-deck'>
-   {deckNames.map((deck_name, index)=>{
-      return <Deck key = {index} deck_name = {deck_name}/>
+   {deckNames.map((subject, index)=>{
+      return <Deck key = {index} subject = {subject}/>
    })}
     </div> 
 

@@ -53,7 +53,7 @@ const signIn = (username, cb)=>{
 }
 
 const getallcards = (user_id, cb)=>{
-connection.query( `select deck_name, question, answer 
+connection.query( `select subject, question, answer 
                   from card 
                   inner join user
                   on user.user_id = card.user_id
@@ -69,14 +69,27 @@ connection.query( `select deck_name, question, answer
                     
                   });
                 }
-                
+
+const createSubject = (subject, user_id, cb)=>{
+connection.query(`
+insert into card (subject, user_id) values 
+('${subject}', '${user_id}');`, (dbFuncErr, results)=>{
+  if(dbFuncErr) {
+
+    cb(dbFuncErr, null);
+  } 
+
+  cb(null, results);
+})
+}
 
 module.exports = {
   getAllCards, 
   insertNewUser, 
   signIn, 
   checkDuplicateUser,
-  getallcards
+  getallcards,
+  createSubject
   // createCards,
   // insertCard
 }
