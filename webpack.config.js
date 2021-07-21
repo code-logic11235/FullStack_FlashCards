@@ -4,6 +4,7 @@ var DIST_DIR = path.join(__dirname, '/react_client/dist');
 
 module.exports = {
   mode: "development",
+  devtool: "eval-cheap-source-map",
   // devtool: 'inline-source-map',
   entry: `${SRC_DIR}/index.jsx`,
   output: {
@@ -16,7 +17,7 @@ module.exports = {
       { 
         test: /\.jsx?/,
         include: SRC_DIR,
-    
+        // use: ['source-map-loader'],
         use: {
           loader: 'babel-loader',
           options: {

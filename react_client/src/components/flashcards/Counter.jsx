@@ -1,9 +1,9 @@
 import React, { useState} from 'react';
 // import CreateFlashCards from './CreateFlashCards.jsx';
 
-export default function Counter({subjects, setShowDecks}){
+export default function Counter({subjects, setShowSubject}){
   function handleClick (){
-    setShowDecks(false);
+    setShowSubject(false);
     document.getElementById('dashboard-btn').style.display='flex';
 
   }

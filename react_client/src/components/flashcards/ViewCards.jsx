@@ -1,41 +1,25 @@
-import React, { useState} from 'react';
+import React, { useEffect, useState} from 'react';
+import ReactDOM from 'react-dom';
 import CreateFlashCards from './CreateFlashCards.jsx';
-import Card from './Card.jsx'
-
+import CardCarousel from './CardCarousel.jsx'
+import $ from 'jquery'
 export default function ViewCards({flashcardsData}){
   const [createFlashCards, setCreateFlashCards]=useState(false)
-function handleClick(){
 
-}
-  return (
-    
-      <>
+useEffect(()=>{
+ 
+},[])
 
-        {createFlashCards?
-         <CreateFlashCards setCreateFlashCards={setCreateFlashCards}/>: null
-      }
+ return ReactDOM.createPortal(  
+   <>
+      <div>
+        hello
+      </div>
+
+   </>, document.getElementsByClassName('view-flashcards')[0]
+
+
 
       
-      {flashcardsData.map((element, index)=>{
-       return <Card element = {element} key = {index}/>
-       
-       })}
-        {/* <br />
-        <hr className='hr-decor'/>
-        <br />
-        <hr />
-        <br />
-        <hr />
-        <h1>
-        {subject}
-        </h1>
-        <br />
-        <hr />
-        <br />
-        <hr />
-        <br />
-        <hr /> */}
-      
-    </>
   )
 }

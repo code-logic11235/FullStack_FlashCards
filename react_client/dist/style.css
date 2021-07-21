@@ -408,35 +408,7 @@ form #done{
   gap: 40px;
   margin-top: 20%;
 }
-/* fasfhasfafgsdag
-sdfgfdafg
-daf
-g
-dfag
-adf
-g
-sfd
-g
-sfdgh
-sf
-h
-fs
-h
-fsg
-hfsg
-h
-fsg
-h
-fsgh
-f
-sh
-fsg
-h
 
-
-
-check this area out when done do some testing and how small amount of subjects and then test for alot of subject
-the gaps are off with small amount of subejcts mainly in the show deck area*/
 .subject-card-container{
   display: grid;
   width: 100%;
@@ -478,7 +450,7 @@ the gaps are off with small amount of subejcts mainly in the show deck area*/
     /* grid-template-rows: repeat( 1fr); */
   }
 }
-.deck{
+.subject{
   background-color: white;
   display: flex;
   justify-content: center;
@@ -492,7 +464,7 @@ the gaps are off with small amount of subejcts mainly in the show deck area*/
 }
 
 
-.deck:hover{
+.subject:hover{
   transform: scale(1.05);
 }
 .hr-decor{
