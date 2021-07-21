@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
-import Axios from 'axios';
-import ShowDeck from './ShowDecks.jsx';
+import ViewSubjects from './ViewSubjects.jsx';
 import CreateDeck from './CreateDeck.jsx';
+
 export default function DashBoard({loggedInUser}) {
 
 
@@ -29,7 +29,7 @@ export default function DashBoard({loggedInUser}) {
 
 
       {showDecks ? 
-      <ShowDeck loggedInUser = {loggedInUser} setShowDecks = {setShowDecks} />
+      <ViewSubjects loggedInUser = {loggedInUser} setShowDecks = {setShowDecks} />
       :
       null
       }

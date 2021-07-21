@@ -437,7 +437,7 @@ h
 
 check this area out when done do some testing and how small amount of subjects and then test for alot of subject
 the gaps are off with small amount of subejcts mainly in the show deck area*/
-.show-deck{
+.subject-card-container{
   display: grid;
   width: 100%;
   align-items: center;
@@ -446,7 +446,7 @@ the gaps are off with small amount of subejcts mainly in the show deck area*/
   /* grid-template-rows: repeat( 1fr); */
 }
 @media only screen and (max-width: 1450px) {
-  .show-deck{
+  .subject-card-container{
     display: grid;
     width: 100%;
     align-items: center;
@@ -457,7 +457,7 @@ the gaps are off with small amount of subejcts mainly in the show deck area*/
   }
 }
 @media only screen and (max-width: 1150px) {
-  .show-deck{
+  .subject-card-container{
     display: grid;
     width: 100%;
     align-items: center;
@@ -468,7 +468,7 @@ the gaps are off with small amount of subejcts mainly in the show deck area*/
   }
 }
 @media only screen and (max-width: 700px) {
-  .show-deck{
+  .subject-card-container{
     display: grid;
     width: 100%;
     align-items: center;
