@@ -49,7 +49,7 @@ function handleClose(){
               autoComplete="off" 
               placeholder='.'
               />       
-              <label htmlFor= 'username'> New Subject</label>
+              <label htmlFor= 'subject'> New Subject</label>
             </div>
 
          

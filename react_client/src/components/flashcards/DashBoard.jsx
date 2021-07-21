@@ -34,7 +34,7 @@ export default function DashBoard({loggedInUser}) {
       null
       }
       {showCreateDeck?
-      <CreateDeck loggedInUser = {loggedInUser} setShowCreateDeck = {setShowCreateDeck}/>
+      <CreateDeck setShowCreateDeck={setShowCreateDeck} loggedInUser = {loggedInUser} />
       :
       null
 

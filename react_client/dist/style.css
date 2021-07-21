@@ -483,9 +483,15 @@ the gaps are off with small amount of subejcts mainly in the show deck area*/
     /* grid-template-rows: repeat( 1fr); */
   }
 }
+.deck-container{
+  /* display: flex; */
+}
 .deck{
-  text-align: center;
+  background-color: white;
+  display: flex;
+  /* text-align: center; */
   justify-content: center;
+  align-items: center;
   width: 100%;
   height: 150px;
   cursor: pointer;
@@ -494,9 +500,10 @@ the gaps are off with small amount of subejcts mainly in the show deck area*/
 
 }
 .deck h1{
-  /* margin: -5px 0; */
-  margin-bottom: -25px;
-  margin-top: -5px;
+  /* text-align: center;
+  justify-content: center; */
+  /* margin-bottom: -25px;
+  margin-top: -5px; */
 }
 
 .deck:hover{

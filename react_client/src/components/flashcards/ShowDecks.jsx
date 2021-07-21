@@ -4,6 +4,7 @@ import Axios from 'axios';
 
 export default function ShowDeck({loggedInUser, setShowDecks}) {
 const [deckNames,setDeckNames] =useState([])
+const [showDeck, setShowDeck]=useState(true)
 
   function handleClick (){
     setShowDecks(false);
@@ -56,11 +57,15 @@ return (
         Showing {deckNames.length} Decks 
       </div>
     </div>
-    <div className='show-deck'>
+    {showDeck ? 
+      <div className='show-deck'>
    {deckNames.map((subject, index)=>{
-      return <Deck key = {index} subject = {subject}/>
+      return <Deck key = {index} subject = {subject} loggedInUser = {loggedInUser} setShowDeck = {setShowDeck}/>
    })}
-    </div> 
+    </div> :
+    null
+    }
+    
 
    
   </>

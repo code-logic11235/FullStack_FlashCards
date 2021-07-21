@@ -164,7 +164,7 @@ app.post('/register', (req, res) => {
 })
 
 app.post('/api/getAllCards', (req, res)=>{
-  console.log(req.body)
+  // console.log(req.body)
   const user_id = req.body.user_id;
   db.getallcards(user_id, (error, results)=>{
     if(error) {
@@ -186,6 +186,21 @@ db.createSubject(subject, user_id, (err, results)=>{
   }
 })
 })
+app.post('/getflashcards',(req, res)=>{
+const subject = req.body.subject;
+const user_id = req.body.user_id;
+db.getFlashcardsBySubject(subject, user_id, (err, results)=>{
+  if(err) {
+    // res.send({error: err})
+    res.status(500).json({
+      error: err
+    })
+  } else {
+    res.send(results)
+  }
+})
+})
+
 app.listen(PORT, () => {
 
   console.log(`listening on port ${PORT}`)

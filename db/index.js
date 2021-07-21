@@ -69,7 +69,7 @@ connection.query( `select subject, question, answer
                     
                   });
                 }
-
+// need to create a way to check for duplicate subject 
 const createSubject = (subject, user_id, cb)=>{
 connection.query(`
 insert into card (subject, user_id) values 
@@ -82,14 +82,24 @@ insert into card (subject, user_id) values
   cb(null, results);
 })
 }
-
+const getFlashcardsBySubject = (subject, user_id, cb) =>{
+  connection.query(`select subject, question, answer from card where user_id = ${user_id} and subject = '${subject}';`, (dbFuncErr, results)=>{
+    if(dbFuncErr) {
+  
+      cb(dbFuncErr, null);
+    } 
+  
+    cb(null, results);
+  })
+}
 module.exports = {
   getAllCards, 
   insertNewUser, 
   signIn, 
   checkDuplicateUser,
   getallcards,
-  createSubject
+  createSubject,
+  getFlashcardsBySubject
   // createCards,
   // insertCard
 }
