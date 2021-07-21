@@ -52,23 +52,38 @@ const signIn = (username, cb)=>{
   });
 }
 
-const getallcards = (user_id, cb)=>{
-connection.query( `select subject, question, answer 
-                  from card 
-                  inner join user
-                  on user.user_id = card.user_id
-                  where user.user_id = ${user_id};
-                  `, (dbFuncErr, successResults)=>{
+// const getallcards = (user_id, cb)=>{
+// connection.query( `select subject, question, answer 
+//                   from card 
+//                   inner join user
+//                   on user.user_id = card.user_id
+//                   where user.user_id = ${user_id};
+//                   `, (dbFuncErr, successResults)=>{
 
-                    if(dbFuncErr) {
-                      cb(dbFuncErr, null);
-                    }else {
-                      cb(null, successResults);
+//                     if(dbFuncErr) {
+//                       cb(dbFuncErr, null);
+//                     }else {
+//                       cb(null, successResults);
                 
-                    } 
+//                     } 
                     
-                  });
-                }
+//                   });
+//                 }
+const getallcards = (user_id, cb)=>{
+  connection.query( `select subject, question, answer 
+                    from card 
+                    where user_id = ${user_id};
+                    `, (dbFuncErr, successResults)=>{
+  
+                      if(dbFuncErr) {
+                        cb(dbFuncErr, null);
+                      }else {
+                        cb(null, successResults);
+                  
+                      } 
+                      
+                    });
+                  }
 // need to create a way to check for duplicate subject 
 const createSubject = (subject, user_id, cb)=>{
 connection.query(`
