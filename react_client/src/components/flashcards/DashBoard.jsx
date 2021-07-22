@@ -22,6 +22,7 @@ export default function DashBoard({loggedInUser}) {
 
 
 
+
   const [subjects,setSubjects] =useState([]);
   useEffect(()=>{
     getSubject();
@@ -86,11 +87,18 @@ export default function DashBoard({loggedInUser}) {
         null}
       </div>
       <div className = 'view-flashcards'>
+      
           {
           showFlashCards ? 
-          flashcardsData.map((flashcard,index) => <Card flashcard={flashcard} key={index}/>
-          )
-          : null
+          <>
+          <div className = 'back-btn-container'>
+            <button id = 'back-btn' onClick={()=>{setShowSubject(true); setShowFlashCards(false);}}> <span className="material-icons" id ='arrow_back'>arrow_back</span>Back</button>
+          </div> 
+          <div>
+            {flashcardsData.map((flashcard,index) => <Card flashcard={flashcard} key={index}/>)}
+
+          </div>
+      </> : null
         }
       </div>
 
