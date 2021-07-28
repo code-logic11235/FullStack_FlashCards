@@ -406,14 +406,17 @@ form #done{
 }
 }
 /* @import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css); */
-
+/* .dashboard{
+  position: relative;
+} */
 #dashboard-btn {
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-  margin-top: 20%;
+margin-left: 75%;
+  /* position: absolute; */
+  /* float: right; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+  /* gap: 40px; */
+  /* margin-top: 20%; */
 }
 
 .subject-card-container{
@@ -473,6 +476,9 @@ form #done{
 
 .subject:hover{
   transform: scale(1.05);
+}
+.subject:hover #delete_forever{ 
+display: block;
 }
 
 
@@ -600,11 +606,17 @@ form #done{
   cursor: pointer;
 }
 .flashcard-entry{
+  position: relative;
   background-color: white;
   width: 40vw;
   cursor: pointer;
   text-align: center;
 }
+.flashcard-entry:hover  #delete_forever{
+  display: block;
+
+}
+
 .hr-decor{
   margin-top: 10px;
   border: 1px solid rgb(250, 108, 108);
@@ -612,14 +624,17 @@ form #done{
 .flashcard-entry h1{
   margin-top: -10px;
   margin-bottom: -25px;
+  width: 40vw;
+  overflow: scroll;
   /* cursor: pointer;/ */
   
 }
 #delete_forever{
+  display: none;
   position:absolute;
   font-size: 30px;
-  bottom: -40px;
-  right: 25%;
+  bottom: 10px;
+  right: 10px;
 }
 .flashcard-counter{
   position:absolute;

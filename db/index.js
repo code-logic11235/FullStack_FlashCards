@@ -126,6 +126,29 @@ const addFlashcard = (values, subject_id, cb)=>{
     cb(null, results);
   })
 }
+const deleteAllFlashcard = (subject_id, cb)=>{
+  connection.query(`delete from card where subject_id = ${subject_id};`,
+    (dbFuncErr, results)=>{
+     if(dbFuncErr) {
+       cb(dbFuncErr, null);
+     }else {
+ 
+       cb(null, results);
+     } 
+   })
+ }
+// 
+const deleteSubject = (subject_id, cb)=>{
+  connection.query(`delete from subject where subject_id = ${subject_id};`,
+    (dbFuncErr, results)=>{
+     if(dbFuncErr) {
+       cb(dbFuncErr, null);
+     }else {
+      deleteAllFlashcard(subject_id, cb);
+
+     } 
+   })
+ }
 module.exports = {
   getAllSubject,
   insertNewUser, 
@@ -134,7 +157,7 @@ module.exports = {
   getAllCardsBySubject,
   createSubject,
   addFlashcard,
-  // getFlashcardsBySubject,
-  deleteFlashcard
+  deleteFlashcard,
+  deleteSubject
 
 }

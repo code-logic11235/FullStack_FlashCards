@@ -47,9 +47,11 @@ return (
       <hr />
       <br />
       
+    <button className='material-icons' 
+    id= 'delete_forever' 
+    onClick={(e)=>{e.stopPropagation(); handleIndex(); deleteFlashcard(flashcard, index, subject_id); }}>delete_forever</button>
     </div>
     <div className='flashcard-counter'> {`${index+1} / ${totalNumberofCards}`}</div>
-    <button className='material-icons' id= 'delete_forever' onClick={()=>{handleIndex(); deleteFlashcard(flashcard, index, subject_id); }}>delete_forever</button>
   </>
 
 )

@@ -4,7 +4,7 @@ import Counter from './Counter.jsx'
 
 
 
-export default function ViewSubjects({subjects, setShowSubject, getFlashcardsBySubject}) {
+export default function ViewSubjects({deleteSubject, subjects, setShowSubject, getFlashcardsBySubject}) {
 
   
   
@@ -19,8 +19,8 @@ return (
     <div className='subject-card-container'>
 
       {subjects.map((subject, index)=>{
-        // console.log('lolololololol: ',subject)
-          return <Subject clickSubject = {getFlashcardsBySubject} key = {index} subject = {subject} />
+
+          return <Subject deleteSubject={deleteSubject} clickSubject = {getFlashcardsBySubject} key = {index} subject = {subject} />
       })}
    
     </div> 

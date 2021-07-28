@@ -4,15 +4,25 @@ import CreateDeck from './CreateDeck.jsx';
 import ViewCards from './ViewCards.jsx'
 import AddFlashCard from './AddFlashCard.jsx'
 import Axios from 'axios';
-
+import $ from 'jquery'
 export default function DashBoard({loggedInUser}) {
 
 
-  const [showSubject, setShowSubject]= useState(false);
+  const [showSubject, setShowSubject]= useState(true);
   const [showCreateDeck, setShowCreateDeck]=useState(false);
-  const [showFlashCards, setShowFlashCards]=useState(false)
-  const [showAddFlashCard, setShowAddFlashCard]= useState(false)
-  
+  const [showFlashCards, setShowFlashCards]=useState(false);
+  const [showAddFlashCard, setShowAddFlashCard]= useState(false);
+
+  $(function(){
+
+    $('.modal-box').on('click', (e)=>{
+      if(e.target.closest('.form-wrapper')) return 
+      setShowAddFlashCard(false);
+      setShowCreateDeck(false);
+
+    })
+  })
+
   function handleShowSubject(){
     setShowSubject(true);
     getSubject();
@@ -41,10 +51,30 @@ export default function DashBoard({loggedInUser}) {
   }
   const [subjects,setSubjects] =useState([]);
 
+useEffect(()=>{
+  getSubject();
+},[])
 
-   function getSubject(){
-     Axios.post('http://localhost:3000/api/getAllSubject', {
-      user_id : loggedInUser.data.user_id,
+function createSubject (subject){
+  Axios.post('http://localhost:3000/createSubject', {
+    subject: subject,
+    user_id: loggedInUser.data.user_id
+  }).then((res) => {
+    // console.log(res)
+    let form = document.getElementsByClassName('form')[0];
+    form.innerHTML= 'You Have created a new subject!'
+    form.style.textAlign='center';
+    getSubject();
+
+  }).catch((err)=>{
+    if(err) {
+      
+    }
+  });
+}
+  function getSubject(){
+    Axios.post('http://localhost:3000/api/getAllSubject', {
+    user_id : loggedInUser.data.user_id,
     }).then((res) => {
       let unique = [...new Set(res.data.map(item => {
         return item 
@@ -57,7 +87,19 @@ export default function DashBoard({loggedInUser}) {
       console.log('Axios Err fashboard getsubject:',err)
     });
   }
+  function deleteSubject(e, subject_id){
+    e.stopPropagation()
+    Axios.post('http://localhost:3000/deleteSubject', {
+      subject_id : subject_id,
+    }).then((res) => {
 
+      getSubject();
+
+    
+    }).catch((err)=>{
+      console.log('Delete Error: ', err)
+    });
+  }
 
   const [flashcardsData, setFlashcardsData] = useState([]);
   function getAllCardsBySubject( subject_id) {
@@ -74,27 +116,28 @@ export default function DashBoard({loggedInUser}) {
   }
 
   return (
-    
     <div className = 'dashboard'>
-      <div id='dashboard-btn'>
-        <button className = 'get-started' onClick={handleShowSubject}>View Avialiable Subjects</button>
-        <button className = 'get-started' onClick={()=>{setShowCreateDeck(true)}}>Create New Subject</button>
-      </div>
-     
+
+       {
+         showSubject ? 
+         <>
+         <div id='dashboard-btn'>
+         <button className = 'get-started' onClick={()=>{setShowCreateDeck(true)}}>Create New Subject</button>
+       </div>
+         <ViewSubjects deleteSubject = {deleteSubject} subjects = {subjects} 
+         setShowSubject = {setShowSubject} getFlashcardsBySubject = {getAllCardsBySubject}
+         /> 
+         </>
+         :
+         null
+       }
       {
         showCreateDeck?
-        <CreateDeck setShowCreateDeck={setShowCreateDeck} loggedInUser = {loggedInUser} />
+        <CreateDeck createSubject = {createSubject} setShowCreateDeck={setShowCreateDeck} />
         :
         null
       }
-      <div className='view-subjects'>
-        {showSubject ? 
-        <ViewSubjects subjects = {subjects} setShowSubject = {setShowSubject} getFlashcardsBySubject = {getAllCardsBySubject}/>
-        :
-        null}
-      </div>
-      <div className = 'view-flashcards'>
-        {
+       {
           showFlashCards ? 
           <>
             <div id = 'back-create-btn-container'>
@@ -114,8 +157,6 @@ export default function DashBoard({loggedInUser}) {
           </> 
           : null
         }
-      </div>
-
     </div>
   )
 }

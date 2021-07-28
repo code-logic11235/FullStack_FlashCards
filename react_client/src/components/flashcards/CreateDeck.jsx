@@ -2,31 +2,17 @@ import React, { useState} from 'react';
 import Axios from 'axios';
 
 
-export default function CreateDeck({setShowCreateDeck, loggedInUser}) {
+export default function CreateDeck({createSubject, setShowCreateDeck}) {
 const [value, setValue]= useState('');
 
 function handleChange (e){
-  console.log(e.target.value);
 setValue(e.target.value);
 }
 
 function handleNewSubject (e){
-  console.log(loggedInUser)
   e.preventDefault();
+  createSubject(value);
 
-  Axios.post('http://localhost:3000/createSubject', {
-    subject: value,
-    user_id: loggedInUser.data.user_id
-  }).then((res) => {
-    // console.log(res)
-    let form = document.getElementsByClassName('form')[0];
-    form.innerHTML= 'You Have created a new subject! to create flashcards, select your subject and create new flashcards'
-    form.style.textAlign='center';
-  }).catch((err)=>{
-    if(err) {
-      
-    }
-  });
 }
 
 function handleClose(){

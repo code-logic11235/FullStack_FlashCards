@@ -85,6 +85,7 @@ app.post('/checkDuplicateUser', (req, res)=>{
     }
   })
 })
+//for testing purposes
 app.get('/fakelogin', (req,res)=>{
   if (true) {
     // console.log('req.session.user:::: ', req.session.user)
@@ -211,7 +212,7 @@ app.post('/deleteFlashcard', (req, res)=>{
       })
     } else {
       // console.log('falshcard deleted')
-      res.status(200).send();
+      res.status(204).send();
     }
   })
 })
@@ -221,17 +222,31 @@ app.post('/addFlashcard', (req, res)=>{
   const subject_id = req.body.subject_id;
   db.addFlashcard(values, subject_id, (err, results)=>{
     if(err) {
-      // res.send({error: err})
+
       res.status(500).json({
         error: err
       })
     } else {
-      // console.log('falshcard deleted')
+
       res.status(200).send();
     }
   })
 })
 
+app.post('/deleteSubject', (req, res)=>{
+  const subject_id = req.body.subject_id;
+  db.deleteSubject(subject_id, (err, results)=>{
+    if(err) {
+      console.log('if; server')
+      res.json({
+        error: err
+      })
+    } else {
+      console.log('else; server')
+      res.status(204).send();
+    }
+  })
+})
 app.listen(PORT, () => {
 
   console.log(`listening on port ${PORT}`)

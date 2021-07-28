@@ -10,9 +10,6 @@ export default function Counter({subjects, setShowSubject}){
   return (
 
     <div id = 'number-of-decks'>
-      <div className = 'back-btn-container'>
-        <button id = 'back-btn' onClick={handleClick}> <span className="material-icons" id ='arrow_back'>arrow_back</span>Back</button>
-      </div>
       <div className = 'number-of-decks'>
         Showing {subjects} subjects 
       </div>
