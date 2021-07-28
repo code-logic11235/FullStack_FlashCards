@@ -163,10 +163,10 @@ app.post('/register', (req, res) => {
   })
 })
 
-app.post('/api/getAllCards', (req, res)=>{
+app.post('/api/getAllSubject', (req, res)=>{
   // console.log(req.body)
   const user_id = req.body.user_id;
-  db.getallcards(user_id, (error, results)=>{
+  db.getAllSubject(user_id, (error, results)=>{
     if(error) {
       res.send({error: error})
     } else {
@@ -186,10 +186,9 @@ db.createSubject(subject, user_id, (err, results)=>{
   }
 })
 })
-app.post('/getflashcards',(req, res)=>{
-const subject = req.body.subject;
-const user_id = req.body.user_id;
-db.getFlashcardsBySubject(subject, user_id, (err, results)=>{
+app.post('/getAllCardsBySubject',(req, res)=>{
+const subject_id = req.body.subject_id;
+db.getAllCardsBySubject(subject_id, (err, results)=>{
   if(err) {
     // res.send({error: err})
     res.status(500).json({
@@ -199,6 +198,38 @@ db.getFlashcardsBySubject(subject, user_id, (err, results)=>{
     res.send(results)
   }
 })
+})
+app.post('/deleteFlashcard', (req, res)=>{
+
+  const question = req.body.question;
+  const user_id = req.body.user_id;
+  db.deleteFlashcard(question, user_id, (err, results)=>{
+    if(err) {
+      // res.send({error: err})
+      res.status(500).json({
+        error: err
+      })
+    } else {
+      // console.log('falshcard deleted')
+      res.status(200).send();
+    }
+  })
+})
+
+app.post('/addFlashcard', (req, res)=>{
+  const values = req.body.values;
+  const subject_id = req.body.subject_id;
+  db.addFlashcard(values, subject_id, (err, results)=>{
+    if(err) {
+      // res.send({error: err})
+      res.status(500).json({
+        error: err
+      })
+    } else {
+      // console.log('falshcard deleted')
+      res.status(200).send();
+    }
+  })
 })
 
 app.listen(PORT, () => {

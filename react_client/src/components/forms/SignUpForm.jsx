@@ -1,10 +1,7 @@
 import React, { useCallback, useEffect, useState} from 'react';
 import Axios from 'axios';
 import ValidateForm from './ValidateForm.jsx';
-// const path = require('path');
-// const check = require('../../../dist/image/check-mark.png');
-// var debounce = require('lodash.debounce');
-import { debounce } from 'lodash';
+
 
 export default function SignUpForm ({setIsFormOpen}) {
   const [errors, setErrors] = useState({});
@@ -38,7 +35,6 @@ export default function SignUpForm ({setIsFormOpen}) {
 
 
   function handleRegister (){
-      console.log(errors)
     if(errors.valid) {
     
       Axios.post('http://localhost:3000/register', {
@@ -52,8 +48,8 @@ export default function SignUpForm ({setIsFormOpen}) {
         form.innerHTML= 'You Have been registered!'
         form.style.textAlign='center';
 
-        console.log('registered! ', res);
-        // if(res.data)
+        // console.log('registered! ', res);
+
       }).catch((err)=>{
         setErrors({username: '*Username taken'})
         // console.log('username taken')

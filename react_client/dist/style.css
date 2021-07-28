@@ -76,9 +76,11 @@ body {
   
 } 
 
+.material-icons{
+  margin: 0;
+}
 
-
-.material-icons, #how-to-reg{
+#how-to-reg{
   margin-left:3.5vw;
   text-align: center;
 }
@@ -300,7 +302,11 @@ form #done{
   
 }
 
-
+.create-card-btn-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .submit-btn{
   display: block;
   margin-left: auto;
@@ -313,6 +319,7 @@ form #done{
   padding: 10px 20px;
   border-radius: 10px;
   cursor: pointer;
+  margin: 0;
 }
 #sign-in-instead{
   cursor: pointer;
@@ -467,10 +474,7 @@ form #done{
 .subject:hover{
   transform: scale(1.05);
 }
-.hr-decor{
-  margin-top: 10px;
-  border: 1px solid rgb(250, 108, 108);
-}
+
 
 
 .search {
@@ -532,10 +536,10 @@ form #done{
   font-weight: bold;
   color: white;
 }
-.back-btn-container{
+#back-create-btn-container{
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   margin-left: 25px;
 }
 #back-btn{
@@ -554,8 +558,77 @@ form #done{
   border-radius: 10px;
   cursor: pointer;
 }
+#create-flashcard{
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  background: #3faee0;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
 #arrow_back{
   font-weight: bold;
   margin-left: 0;
   margin-right: 5px;
+}
+.more-cards{
+  background: #3faee0;
+}
+
+.view-subject, .view-flashcards{
+  margin-bottom: 25px;
+  
+}
+.flashcards-container{
+  position: relative;
+  margin: 100px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.flashcards-container button:enabled {
+  cursor: pointer;
+}
+.flashcard-entry{
+  background-color: white;
+  width: 40vw;
+  cursor: pointer;
+  text-align: center;
+}
+.hr-decor{
+  margin-top: 10px;
+  border: 1px solid rgb(250, 108, 108);
+}
+.flashcard-entry h1{
+  margin-top: -10px;
+  margin-bottom: -25px;
+  /* cursor: pointer;/ */
+  
+}
+#delete_forever{
+  position:absolute;
+  font-size: 30px;
+  bottom: -40px;
+  right: 25%;
+}
+.flashcard-counter{
+  position:absolute;
+  font-size: 30px;
+  top: -40px;
+  right: 47%;
+}
+.empty-flashcards{
+  text-align: center;
+  /* font-size: ; */
+  margin-top: 50px;
 }

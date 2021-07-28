@@ -18,10 +18,10 @@ function handleNewSubject (e){
     subject: value,
     user_id: loggedInUser.data.user_id
   }).then((res) => {
-    console.log(res)
+    // console.log(res)
     let form = document.getElementsByClassName('form')[0];
-      form.innerHTML= 'You Have created a new subject! to create flashcards, select your subject and create new flashcards'
-      form.style.textAlign='center';
+    form.innerHTML= 'You Have created a new subject! to create flashcards, select your subject and create new flashcards'
+    form.style.textAlign='center';
   }).catch((err)=>{
     if(err) {
       

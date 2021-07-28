@@ -5,16 +5,6 @@ const sqlConfig = require('./config.js');
 const connection = mysql.createConnection(sqlConfig);
 connection.connect();
 
-const getAllCards = (cb)=>{
-  connection.query('select * from card', (err, results)=>{
-    if (err) {
-
-      throw err;
-    } 
-
-    cb (results) //send back to server 
-  });
-};
 const checkDuplicateUser = (username,cb) =>{
   connection.query(`select username from user where username = '${username}';`, (dbFuncErr, successResults)=>{
 
@@ -69,25 +59,38 @@ const signIn = (username, cb)=>{
                     
 //                   });
 //                 }
-const getallcards = (user_id, cb)=>{
-  connection.query( `select subject, question, answer 
-                    from card 
-                    where user_id = ${user_id};
-                    `, (dbFuncErr, successResults)=>{
+const getAllSubject = (user_id, cb)=>{
+  connection.query(`select subject_id, subject from subject where user_id = ${user_id};`, (dbFuncErr, successResults)=>{
   
-                      if(dbFuncErr) {
-                        cb(dbFuncErr, null);
-                      }else {
-                        cb(null, successResults);
-                  
-                      } 
-                      
-                    });
-                  }
+    if(dbFuncErr) {
+      cb(dbFuncErr, null);
+    }else {
+      cb(null, successResults);
+
+    } 
+    
+  });
+}
+  const getAllCardsBySubject =(subject_id, cb) =>{
+    connection.query(`select question, answer from card 
+                      inner join subject 
+                      on subject.subject_id = card.subject_id
+                      where subject.subject_id = ${subject_id};` , (dbFuncErr, successResults)=>{
+  
+      if(dbFuncErr) {
+        cb(dbFuncErr, null);
+      }else {
+        cb(null, successResults);
+  
+      } 
+      
+    });
+  }
+
 // need to create a way to check for duplicate subject 
 const createSubject = (subject, user_id, cb)=>{
 connection.query(`
-insert into card (subject, user_id) values 
+insert into subject (subject, user_id) values 
 ('${subject}', '${user_id}');`, (dbFuncErr, results)=>{
   if(dbFuncErr) {
 
@@ -97,8 +100,24 @@ insert into card (subject, user_id) values
   cb(null, results);
 })
 }
-const getFlashcardsBySubject = (subject, user_id, cb) =>{
-  connection.query(`select subject, question, answer from card where user_id = ${user_id} and subject = '${subject}';`, (dbFuncErr, results)=>{
+
+const deleteFlashcard = (question, user_id, cb)=>{
+  connection.query(`delete from card where question = '${question}' and subject_id = '${user_id}'`, (dbFuncErr, results)=>{
+    if(dbFuncErr) {
+  
+      cb(dbFuncErr, null);
+    } 
+  
+    cb(null, results);
+  })
+}
+
+//// user ID dont match much 
+const addFlashcard = (values, subject_id, cb)=>{
+
+  connection.query('insert into card (question, answer, subject_id) values ?', 
+  [values.map(obj=>[obj.Question, obj.Answer, subject_id])],
+   (dbFuncErr, results)=>{
     if(dbFuncErr) {
   
       cb(dbFuncErr, null);
@@ -108,13 +127,14 @@ const getFlashcardsBySubject = (subject, user_id, cb) =>{
   })
 }
 module.exports = {
-  getAllCards, 
+  getAllSubject,
   insertNewUser, 
   signIn, 
   checkDuplicateUser,
-  getallcards,
+  getAllCardsBySubject,
   createSubject,
-  getFlashcardsBySubject
-  // createCards,
-  // insertCard
+  addFlashcard,
+  // getFlashcardsBySubject,
+  deleteFlashcard
+
 }

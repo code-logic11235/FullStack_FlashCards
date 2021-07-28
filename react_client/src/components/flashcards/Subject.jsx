@@ -3,25 +3,20 @@ import React, { useState} from 'react';
 import Axios from 'axios';
 
 export default function subject({subject, clickSubject}){
-// const [flashCards, setFlashCards]=useState();
 
-// const [showsubject, setShowsubject]=useState(true)
 
 function handleClick(e){
-  var text = e.target.textContent;
-  console.log("subject text; ",text)
-  clickSubject(text);
+
+  clickSubject(subject.subject_id );
   
 }
   return (
     <>
-    
       <div className ='subject-container'>
         <div className='subject' onClick={handleClick}>
-          {subject}
+          {subject.subject}
         </div>
       </div> 
- 
     </>
   )
 }
